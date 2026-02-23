@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import SocialButton from './UI/SocialButton';
-import { FaGithub, FaLinkedin,FaRegFilePdf  } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaRegFilePdf } from 'react-icons/fa';
+import gsap from 'gsap';
+import Particles from './UI/Particles';
+
 const Landing = () => {
 	return (
 		<section id="Landing">
+			<Particles />
+
 			<div className="landing__container">
 				<div className="landing__container--text">
 					<h1 className="text--color">I'm Bryan Degante</h1>
@@ -16,23 +21,24 @@ const Landing = () => {
 						technologies.
 					</h3>
 				</div>
+
 				<ul className="social__container">
 					<li>
 						<SocialButton
-							text='Github'
-                            icon={<FaGithub className="social__icon" />}
+							text="Github"
+							icon={<FaGithub className="social__icon" />}
 						/>
 					</li>
 					<li>
 						<SocialButton
-							text='LinkedIn'
-                            icon={<FaLinkedin className="social__icon" />}
+							text="LinkedIn"
+							icon={<FaLinkedin className="social__icon" />}
 						/>
 					</li>
 					<li>
 						<SocialButton
-							text='Resume'
-                            icon={<FaRegFilePdf className="social__icon" />}
+							text="Resume"
+							icon={<FaRegFilePdf className="social__icon" />}
 						/>
 					</li>
 				</ul>

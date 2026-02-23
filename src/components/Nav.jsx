@@ -10,10 +10,7 @@ const Nav = () => {
 						<a href="#" className='link__hover--effect'>Home</a>
 					</li>
 					<li>
-						<a href="#" className='link__hover--effect'>Features</a>
-					</li>
-					<li>
-						<a href="#" className='link__hover--effect'>Pricing</a>
+						<a href="#" className='link__hover--effect'>About</a>
 					</li>
 					<li>
 						<a href="#" className='link__hover--effect'>Contact</a>
