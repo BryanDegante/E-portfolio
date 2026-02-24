@@ -4,7 +4,7 @@ const Nav = () => {
   return (
 		<nav class="glass-nav">
 			<div class="nav-content">
-				<div class="logo">Brand</div>
+				<div class="logo"><img src="ClearLogo.png" alt="" /></div>
 				<ul class="nav-links">
 					<li>
 						<a href="#" className='link__hover--effect'>Home</a>
