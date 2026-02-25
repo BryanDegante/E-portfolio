@@ -4,7 +4,7 @@ import { techStack } from '../data/techData';
 
 const TechStack = () => {
 	return (
-		<section id="TechStack">
+		<div id="TechStack">
 			<div className="techstack__container">
 				<h2 className="text__color--normal">Tech Stack</h2>
 
@@ -21,7 +21,7 @@ const TechStack = () => {
 					))}
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 };
 

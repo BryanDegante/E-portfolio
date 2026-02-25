@@ -5,7 +5,7 @@ const TechCard = ({ name, icon: Icon, svg, color }) => {
 		<div className="tech__card">
 			<div className="tech__card--icon">
 				{Icon ? (
-					<Icon size={32} color={color} />
+					<Icon size={30} color={color} />
 				) : svg ? (
 					<img className="tech__card--svg" src={svg} alt={name} />
 				) : null}

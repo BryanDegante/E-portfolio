@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import logo from '../assets/ClearLogo.png';
 
 const Nav = () => {
 	const [active, setActive] = useState('Home');
@@ -14,7 +15,7 @@ const Nav = () => {
 					}
 				});
 			},
-			{ threshold: 0.6 }, // 50% of section visible
+			{ threshold: 0.1 }, // 50% of section visible
 		);
 
 		sections.forEach((section) => observer.observe(section));
@@ -33,7 +34,7 @@ const Nav = () => {
 		<nav className="glass-nav">
 			<div className="nav-content">
 				<div className="logo">
-					<img src="ClearLogo.png" alt="" />
+					<img src={logo} alt="" />
 				</div>
 				<ul className="nav-links">
 					{links.map((link) => (
