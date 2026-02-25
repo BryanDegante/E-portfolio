@@ -11,12 +11,12 @@ const Landing = () => {
 
 			<div className="landing__container">
 				<div className="landing__container--text">
-					<h1 className="text--color">I'm Bryan Degante</h1>
-					<h2 className="text--color">
+					<h1 className="text__color--normal">I'm Bryan Degante</h1>
+					<h2 className="text__color--normal">
 						A Frontend Developer <br /> Focused on clean UI & Smooth
 						Animations
 					</h2>
-					<h3 className="text--color">
+					<h3 className="text__color--normal">
 						Building responsive interfaces with modern web
 						technologies.
 					</h3>

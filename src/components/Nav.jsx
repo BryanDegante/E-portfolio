@@ -13,6 +13,9 @@ const Nav = () => {
 						<a href="#" className='link__hover--effect'>About</a>
 					</li>
 					<li>
+						<a href="#" className='link__hover--effect'>Projects</a>
+					</li>
+					<li>
 						<a href="#" className='link__hover--effect'>Contact</a>
 					</li>
 				</ul>
