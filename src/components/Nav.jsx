@@ -2,10 +2,10 @@ import React from 'react'
 
 const Nav = () => {
   return (
-		<nav class="glass-nav">
-			<div class="nav-content">
-				<div class="logo"><img src="ClearLogo.png" alt="" /></div>
-				<ul class="nav-links">
+		<nav className="glass-nav">
+			<div className="nav-content">
+				<div className="logo"><img src="ClearLogo.png" alt="" /></div>
+				<ul className="nav-links">
 					<li>
 						<a href="#" className='link__hover--effect'>Home</a>
 					</li>

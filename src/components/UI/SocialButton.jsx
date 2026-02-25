@@ -6,7 +6,7 @@ const SocialButton = ({text, icon}) => {
           <div className="sign">
               {icon}
           </div>
-          <div class="text">{text}</div>
+          <div className="text">{text}</div>
       </button>
   )
 }

@@ -9,6 +9,7 @@
       #6366F1 40%,
       #2563EB 100%);
   --cyan: #22D3EE;
+  --card-bg: #0F172A;
   --body-bg: radial-gradient(circle at 75% 35%,
       rgba(59, 130, 246, 0.35) 0%,
       rgba(59, 130, 246, 0.18) 30%,
@@ -64,6 +65,7 @@ h3 {
   font-family: 'Inter';
   font-size: 18px;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 img {
@@ -129,7 +131,7 @@ a {
   height: 2px;
   background: var(--primary);
   transition: width 0.3s ease;
-  box-shadow: 0 0 8px  var(--primary);
+  box-shadow: 0 0 8px var(--primary);
 }
 
 .link__hover--effect:hover {
@@ -298,6 +300,18 @@ a {
 
 /* #region ABOUT  */
 
+#About::after{
+content: "";
+  display: block;
+  width: min(300px, 40%);
+  height: 1px;
+  margin: 80px auto 0;
+  background: linear-gradient(to right,
+      transparent,
+      rgba(59, 130, 246, 0.5),
+      transparent);
+}
+
 .about__wrapper {
   display: flex;
   flex-direction: column;
@@ -326,3 +340,45 @@ a {
 
 /* #endregion ABOUT */
 
+/* #region TechStack  */
+.techstack__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px 24px;
+  gap: 20px;
+}
+
+.techstack__grid {
+  display: flex;
+  gap: 20px;
+}
+
+.tech__card {
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tech__card--icon {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.tech__card--svg {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+}
+
+
+/* #endregion TechStack */
