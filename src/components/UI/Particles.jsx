@@ -1,4 +1,3 @@
-// Particles.jsx
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -8,7 +7,6 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 	useEffect(() => {
 		const scene = new THREE.Scene();
 
-		// Camera
 		const camera = new THREE.PerspectiveCamera(
 			75,
 			window.innerWidth / window.innerHeight,
@@ -17,7 +15,6 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 		);
 		camera.position.z = 10;
 
-		// Renderer
 		const renderer = new THREE.WebGLRenderer({
 			alpha: true,
 			antialias: true,
@@ -26,16 +23,15 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 		renderer.setPixelRatio(window.devicePixelRatio);
 		if (mountRef.current) mountRef.current.appendChild(renderer.domElement);
 
-		// --- Particle Geometry ---
 		const geometry = new THREE.BufferGeometry();
 		const positions = new Float32Array(particleCount * 3);
 		const speeds = new Float32Array(particleCount);
 
 		for (let i = 0; i < particleCount; i++) {
-			positions[i * 3] = (Math.random() - 0.5) * 20; // x
-			positions[i * 3 + 1] = (Math.random() - 0.5) * 10; // y
-			positions[i * 3 + 2] = (Math.random() - 0.5) * 20; // z
-			speeds[i] = 0.001 + Math.random() * 0.003; // speed for vertical floating
+			positions[i * 3] = (Math.random() - 0.5) * 20;
+			positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+			positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+			speeds[i] = 0.001 + Math.random() * 0.003;
 		}
 
 		geometry.setAttribute(
@@ -43,7 +39,6 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 			new THREE.BufferAttribute(positions, 3),
 		);
 
-		// --- Circular particle texture ---
 		const canvas = document.createElement('canvas');
 		canvas.width = 32;
 		canvas.height = 32;
@@ -55,10 +50,10 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 		ctx.beginPath();
 		ctx.arc(16, 16, 16, 0, Math.PI * 2);
 		ctx.fill();
+
 		const texture = new THREE.Texture(canvas);
 		texture.needsUpdate = true;
 
-		// --- Material ---
 		const material = new THREE.PointsMaterial({
 			size: 0.08,
 			map: texture,
@@ -71,20 +66,19 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 		const points = new THREE.Points(geometry, material);
 		scene.add(points);
 
-		// --- Animate ---
-		const clock = new THREE.Clock();
-		const animate = () => {
+		// ✅ No Clock — using RAF timestamp instead
+		const animate = (time) => {
 			requestAnimationFrame(animate);
+
 			const positionsArray = geometry.attributes.position.array;
-			const time = clock.getElapsedTime();
+			const seconds = time * 0.001; // convert ms → seconds
 
 			for (let i = 0; i < particleCount; i++) {
-				// Floating motion
-				positionsArray[i * 3 + 1] += Math.sin(time + i) * speeds[i]; // y movement
-				positionsArray[i * 3] +=
-					Math.cos(time * 0.5 + i) * speeds[i] * 0.5; // x sway
+				positionsArray[i * 3 + 1] += Math.sin(seconds + i) * speeds[i];
 
-				// Wrap vertically
+				positionsArray[i * 3] +=
+					Math.cos(seconds * 0.5 + i) * speeds[i] * 0.5;
+
 				if (positionsArray[i * 3 + 1] > 6)
 					positionsArray[i * 3 + 1] = -6;
 				if (positionsArray[i * 3 + 1] < -6)
@@ -92,20 +86,20 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 			}
 
 			geometry.attributes.position.needsUpdate = true;
-			points.rotation.y += 0.0005; // slow rotation for depth
+			points.rotation.y += 0.0005;
 			renderer.render(scene, camera);
 		};
-		animate();
 
-		// --- Resize ---
+		requestAnimationFrame(animate);
+
 		const handleResize = () => {
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			camera.aspect = window.innerWidth / window.innerHeight;
 			camera.updateProjectionMatrix();
 		};
+
 		window.addEventListener('resize', handleResize);
 
-		// --- Cleanup ---
 		return () => {
 			window.removeEventListener('resize', handleResize);
 			if (mountRef.current)

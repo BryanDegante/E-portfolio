@@ -10,15 +10,16 @@
       #2563EB 100%);
   --cyan: #22D3EE;
   --card-bg: #0F172A;
-  --body-bg: radial-gradient(circle at 75% 35%,
+  --hero: radial-gradient(circle at 75% 35%,
       rgba(59, 130, 246, 0.35) 0%,
-      rgba(59, 130, 246, 0.18) 30%,
-      rgba(2, 6, 23, 0) 60%),
-    #020617;
-  --section-bg: #0B1120;
+      rgba(59, 130, 246, 0.18) 20%,
+      rgba(2, 6, 23, 0) 40%);
+  --section: #020617;
+  --card: #0B1120;
   --text-color: #E5E7EB;
   --text-muted: #9CA3AF;
 }
+
 
 * {
   margin: 0;
@@ -29,7 +30,7 @@
 
 
 body {
-  background: var(--body-bg);
+  background: var(--section);
 }
 
 html {
@@ -40,6 +41,12 @@ html {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+section {
+  min-height: 100vh;
+    scroll-margin-top: 80px;
+  padding: 36px 24px;
 }
 
 h1 {
@@ -122,6 +129,10 @@ a {
   width: 100%;
 }
 
+.link__hover--effect {
+  position: relative;
+}
+
 .link__hover--effect::after {
   content: "";
   position: absolute;
@@ -135,11 +146,20 @@ a {
 }
 
 .link__hover--effect:hover {
-  color: white;
+  color: var(--primary-hover);
 }
 
 .link__hover--effect:hover::after {
   width: 100%;
+}
+
+.link__hover--effect.active-link::after {
+  width: 100%;
+}
+
+.link__hover--effect.active-link {
+  color: var(--primary-hover);
+  /* optional: match hover color */
 }
 
 
@@ -198,13 +218,13 @@ a {
 
 /*  #region LANDING */
 #Landing {
-  min-height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
   align-items: center;
   padding-left: 200px;
-
+  background: var(--hero);
+  z-index: 1;
 }
 
 .landing__container {
@@ -300,8 +320,8 @@ a {
 
 /* #region ABOUT  */
 
-#About::after{
-content: "";
+.about__wrapper::after {
+  content: "";
   display: block;
   width: min(300px, 40%);
   height: 1px;
@@ -324,7 +344,7 @@ content: "";
   width: 100%;
   max-width: 1280px;
   border-radius: 20px;
-  background: var(--section-bg);
+  background: var(--card);
   gap: 20px;
   display: flex;
   justify-content: center;
@@ -382,3 +402,14 @@ content: "";
 
 
 /* #endregion TechStack */
+
+/* #region PROJECTS */
+#Projects {
+  min-height: 100dvh;
+}
+
+.project__wrapper {
+  display: flex;
+}
+
+/* #endregion PROJECTS */

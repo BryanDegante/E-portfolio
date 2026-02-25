@@ -1,12 +1,12 @@
 import React from 'react';
+import TechStack from './TechStack';
 
 const About = () => {
 	return (
 		<section id="About">
 			<div className="container">
 				<div className="about__wrapper">
-                    <div className="About__container">
-                        
+					<div className="About__container">
 						<h2 className="text__color--normal">About Me</h2>
 						<p className="about__para text__color--muted">
 							I'm a self-taught{' '}
@@ -42,6 +42,7 @@ const About = () => {
 						</p>
 					</div>
 				</div>
+				<TechStack />
 			</div>
 		</section>
 	);
