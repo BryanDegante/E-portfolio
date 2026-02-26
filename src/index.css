@@ -44,7 +44,6 @@ html {
 }
 
 section {
-  min-height: 100dvh;
   scroll-margin-top: 80px;
   padding: 36px 24px;
 }
@@ -177,19 +176,37 @@ a {
 }
 
 /* #region NAV */
+.nav-Container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
 .glass-nav {
   position: fixed;
   top: 20px;
+  /* initial offset */
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 1000;
-  pointer-events: none;
+}
+
+.floating-nav {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 .nav-content {
   pointer-events: auto;
+  /* clickable from start */
   width: 100%;
   max-width: 1100px;
   margin: 0 20px;
@@ -205,7 +222,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all ease 300ms;
+  transition: all 0.3s ease;
 }
 
 .nav-content:hover {
@@ -227,6 +244,7 @@ a {
   margin: 0;
 }
 
+
 /* #endregion NAV */
 
 /*  #region LANDING */
@@ -237,6 +255,7 @@ a {
   align-items: center;
   padding-left: 200px;
   background: var(--hero);
+  min-height: 100dvh;
   z-index: 1;
 }
 
@@ -416,27 +435,45 @@ a {
 /* #endregion TechStack */
 
 /* #region PROJECTS */
-.projects__layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin: 0 auto;
-  max-width: 1200px;
+#Projects {
+  padding: 160px 0;
 }
 
-/* LEFT SIDE */
+.projects__title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 80px;
+  letter-spacing: -1px;
+}
+
+.projects__layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+  /* CRITICAL */
+}
+
+/* LEFT */
 .projects__left {
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 200px;
 }
 
 .project__card {
   position: relative;
-  min-height: 320px;
+  min-height: 480px;
+  /* taller like screenshot */
   padding: 32px;
-  border-radius: 16px;
+  border-radius: 24px;
+  /* softer corners */
   overflow: hidden;
+
+  background: linear-gradient(145deg, #ff2f92, #c40063);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .project__card--text {
@@ -449,10 +486,10 @@ a {
   background: rgba(2, 6, 23, 0.75);
   backdrop-filter: blur(10px);
   opacity: 0;
-  border-radius: 16px;
+  border-radius: 24px;
   transform: translateY(10px);
   transition: all 0.35s ease;
-  padding: 16px;
+  padding: 24px;
   gap: 24px;
 }
 
@@ -461,23 +498,33 @@ a {
   transform: translateY(0);
 }
 
+/* RIGHT (GSAP controls vertical position) */
 .projects__right {
-  position: sticky;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  top: 120px;
-  gap: 120px;
+  position: relative;
+  /* Required for absolute children */
+  height: 480px;
+}
+
+/* Stack descriptions */
+.projects__right-item {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.projects__right-item.active {
+  opacity: 1;
 }
 
 .project__description {
-  min-height: 320px;
-  padding: 32px;
-  border-radius: 16px;
-  overflow: hidden;
-  line-height: 30px;
+  max-width: 420px;
+  line-height: 1.8;
 }
-
 
 
 .project__card--tech-stack {
@@ -515,6 +562,7 @@ a {
   mask-composite: exclude;
   pointer-events: none;
 }
+
 .project__card--tech-card--icon {
   display: flex;
 }
