@@ -169,11 +169,17 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg,
-      #3b82f6,
-      #06b6d4);
+  background: linear-gradient(180deg, #3b82f6, #06b6d4);
   border-radius: 999px;
+  border: 2px solid #020617;
+  /* ← adds depth */
 }
+
+/* hover state (subtle premium feel) */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #0891b2);
+}
+
 
 /* #region NAV */
 .nav-Container {
@@ -433,33 +439,89 @@ a {
 /* #endregion TechStack */
 
 /* #region PROJECTS */
-#Projects{
+#Projects {
   min-height: 100dvh;
   text-align: center;
+  padding: 80px 0;
 }
 
+/* =======================
+   LAYOUT
+======================= */
 .projects__layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-/* LEFT SIDE */
-.projects__left {
+  margin: 48px auto 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 100px;
+  max-width: 1100px;
 }
+
+/* =======================
+   PROJECT ROW
+======================= */
+.project__wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  transition: transform 0.35s ease;
+}
+
+/* subtle hover lift (desktop only feel) */
+@media (hover: hover) {
+  .project__wrapper:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.project__left,
+.project__right {
+  width: 50%;
+  display: flex;
+}
+
 
 .project__card {
   position: relative;
+  width: 100%;
   min-height: 320px;
-  padding: 32px;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
+
+  transform-style: preserve-3d;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: #111;
 }
+
+.project__card::after {
+  content: "";
+  position: absolute;
+  inset: -150%;
+  background: linear-gradient(120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.08),
+      transparent 70%);
+  transform: rotate(25deg) translateX(-100%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+
+.project__card:hover::after {
+  transform: rotate(25deg) translateX(100%);
+}
+
+@media (hover: hover) {
+  .project__card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  }
+}
+
 
 .project__card--text {
   position: absolute;
@@ -468,38 +530,34 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(2, 6, 23, 0.75);
-  backdrop-filter: blur(10px);
+  background: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(12px);
   opacity: 0;
-  border-radius: 16px;
-  transform: translateY(10px);
-  transition: all 0.35s ease;
-  padding: 16px;
+  border-radius: 20px;
+  transform: translateY(12px) scale(0.98);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 20px;
   gap: 24px;
 }
 
 .project__card:hover .project__card--text {
   opacity: 1;
-  transform: translateY(0);
-}
-
-.projects__right {
-  position: sticky;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  top: 120px;
-  gap: 120px;
+  transform: translateY(0) scale(1);
 }
 
 .project__description {
+  width: 100%;
   min-height: 320px;
   padding: 32px;
-  border-radius: 16px;
-  overflow: hidden;
-  line-height: 30px;
+  border-radius: 20px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  text-align: left;
 }
-
 
 
 .project__card--tech-stack {
@@ -507,27 +565,34 @@ a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .project__card--tech-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 8px 12px;
   background-color: var(--card-bg);
   gap: 8px;
   border: 2px solid transparent;
   background-clip: padding-box;
   position: relative;
+  transition: transform 0.25s ease;
+}
+
+@media (hover: hover) {
+  .project__card--tech-card:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .project__card--tech-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 2px;
   background: var(--purple);
   -webkit-mask:
@@ -542,9 +607,37 @@ a {
   display: flex;
 }
 
-
 .project__card--svg {
   height: 20px;
   width: 20px;
 }
+
+.project__wrapper:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+
 /* #endregion PROJECTS */
+
+
+
+
+@media (max-width: 900px) {
+  .project__wrapper {
+    flex-direction: column;
+  }
+
+  .project__left,
+  .project__right {
+    width: 100%;
+  }
+
+  .project__description {
+    text-align: center;
+    align-items: center;
+  }
+
+  .project__wrapper:nth-child(even) {
+    flex-direction: column;
+  }
+}
