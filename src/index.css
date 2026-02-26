@@ -187,7 +187,6 @@ a {
 .glass-nav {
   position: fixed;
   top: 20px;
-  /* initial offset */
   left: 0;
   width: 100%;
   display: flex;
@@ -196,7 +195,6 @@ a {
 }
 
 .floating-nav {
-  backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
@@ -435,45 +433,32 @@ a {
 /* #endregion TechStack */
 
 /* #region PROJECTS */
-#Projects {
-  padding: 160px 0;
-}
-
-.projects__title {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 80px;
-  letter-spacing: -1px;
+#Projects{
+  min-height: 100dvh;
+  text-align: center;
 }
 
 .projects__layout {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 80px;
-  max-width: 1200px;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   margin: 0 auto;
-  align-items: start;
-  /* CRITICAL */
+  max-width: 1200px;
 }
 
-/* LEFT */
+/* LEFT SIDE */
 .projects__left {
   display: flex;
   flex-direction: column;
-  gap: 200px;
+  gap: 120px;
 }
 
 .project__card {
   position: relative;
-  min-height: 480px;
-  /* taller like screenshot */
+  min-height: 320px;
   padding: 32px;
-  border-radius: 24px;
-  /* softer corners */
+  border-radius: 16px;
   overflow: hidden;
-
-  background: linear-gradient(145deg, #ff2f92, #c40063);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .project__card--text {
@@ -486,10 +471,10 @@ a {
   background: rgba(2, 6, 23, 0.75);
   backdrop-filter: blur(10px);
   opacity: 0;
-  border-radius: 24px;
+  border-radius: 16px;
   transform: translateY(10px);
   transition: all 0.35s ease;
-  padding: 24px;
+  padding: 16px;
   gap: 24px;
 }
 
@@ -498,33 +483,23 @@ a {
   transform: translateY(0);
 }
 
-/* RIGHT (GSAP controls vertical position) */
 .projects__right {
-  position: relative;
-  /* Required for absolute children */
-  height: 480px;
-}
-
-/* Stack descriptions */
-.projects__right-item {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
-
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.projects__right-item.active {
-  opacity: 1;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  top: 120px;
+  gap: 120px;
 }
 
 .project__description {
-  max-width: 420px;
-  line-height: 1.8;
+  min-height: 320px;
+  padding: 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  line-height: 30px;
 }
+
 
 
 .project__card--tech-stack {
@@ -571,7 +546,5 @@ a {
 .project__card--svg {
   height: 20px;
   width: 20px;
-
 }
-
 /* #endregion PROJECTS */
