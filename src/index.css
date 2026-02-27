@@ -5,9 +5,9 @@
   --primary: #3B82F6;
   --primary-hover: #2563EB;
   --purple: linear-gradient(90deg,
-      #8B5CF6 0%,
-      #6366F1 40%,
-      #2563EB 100%);
+      #7c44ff 0%,
+      #4bc6ff 40%,
+      #1900ff 100%);
   --cyan: #22D3EE;
   --card-bg: #0F172A;
   --hero: radial-gradient(circle at 75% 35%,
@@ -97,15 +97,30 @@ img {
 }
 
 .text__color--purple {
-  background: var(--purple);
+  background: linear-gradient(90deg,
+      #8b5cf6,
+        #a78bfa,
+        #8b5cf6,
+        #b794f4);
+
+  background-size: 300% 100%;
   font-weight: 800;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+
+  animation: purpleFlow 6s linear infinite;
 }
 
+@keyframes purpleFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
 .text__color--muted {
   color: var(--text-muted);
 }
@@ -406,22 +421,116 @@ a {
   gap: 20px;
 }
 
-.techstack__grid {
-  display: flex;
-  gap: 20px;
+/* =======================
+   HEADING
+======================= */
+.techstack__container h2 {
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 24px;
 }
 
+/* =======================
+   MARQUEE
+======================= */
+.techstack__marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  /* 🔥 subtle fade edges without darkening middle */
+  mask-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0) 5%,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 95%);
+  -webkit-mask-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0) 5%,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 95%);
+}
+
+/* =======================
+   TRACK
+======================= */
+.techstack__track {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+
+  /* remove CSS animation, handled by GSAP */
+  animation: none;
+}
+
+/* =======================
+   TECH CARD
+======================= */
 .tech__card {
-  background: var(--card-bg);
+  background: rgba(30, 30, 40, 0.95);
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 16px;
   justify-content: center;
+  flex: 0 0 auto;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  position: relative;
+  /* needed for pseudo-element */
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1;
+  z-index: 0;
 }
 
+/* Pseudo-element for animated border */
+.tech__card::before {
+  content: '';
+  position: absolute;
+  inset: 0px;
+  /* extends slightly outside the card */
+  border-radius: 22px;
+  /* slightly bigger than card */
+  padding: 2px;
+  /* border thickness */
+  background: var(--purple);
+  background-size: 600% 600%;
+  /* for smooth movement */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: -1;
+  /* behind card */
+  animation: gradientBorder 6s linear infinite;
+}
+
+/* Animation */
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* subtle magnetic hover */
+@media (hover: hover) {
+  .tech__card:hover {
+    transform: scale(1.05) translateZ(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ICON */
 .tech__card--icon {
   display: flex;
   align-items: center;
@@ -434,7 +543,6 @@ a {
   height: 30px;
   width: 30px;
 }
-
 
 /* #endregion TechStack */
 
@@ -619,8 +727,260 @@ a {
 
 /* #endregion PROJECTS */
 
+/* #region CONTACT */
+#Contact {
+  padding: 140px 0;
+  background:
+    radial-gradient(circle at 20% 20%,
+      rgba(59, 130, 246, 0.12),
+      transparent 40%),
+    #020617;
+    position: relative;
+      overflow: hidden;
+}
 
+#Contact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+}
+.contact__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
 
+.contact__title {
+  font-size: 40px;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+
+  background: linear-gradient(90deg,
+      #3b82f6,
+      #06b6d4,
+      #60a5fa,
+      #3b82f6);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientShift 6s linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.contact__left h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.contact__left p {
+  color: #94a3b8;
+  line-height: 28px;
+  max-width: 450px;
+}
+/* FORM */
+.contact__form {
+  position: relative;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(14px);
+  padding: 48px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: all 0.4s ease;
+}
+
+.contact__form:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+/* glow border */
+.contact__form::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(120deg,
+      transparent,
+      rgb(59, 131, 246),
+      transparent);
+  background-size: 200% 200%;
+  animation: borderFlow 6s linear infinite;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.contact__form.sent {
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.25);
+}
+
+.form__group {
+  position: relative;
+}
+
+.form__group input,
+.form__group textarea {
+  width: 100%;
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 18px 16px;
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.form__group label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 13px;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  background: #020617;
+  padding: 0 6px;
+}
+
+.form__group input:focus,
+.form__group textarea:focus {
+  border-color: #3b82f6;
+  box-shadow:
+    0 0 0 2px rgba(59, 130, 246, 0.18),
+    0 8px 30px rgba(59, 130, 246, 0.08);
+}
+
+.form__group input:focus+label,
+.form__group input:not(:placeholder-shown)+label,
+.form__group textarea:focus+label,
+.form__group textarea:not(:placeholder-shown)+label {
+  top: 0;
+  font-size: 11px;
+  color: #60a5fa;
+}
+.btn__primary {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  border: none;
+  padding: 16px;
+  border-radius: 999px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn__primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.35);
+}
+
+.btn__primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* magnetic feel */
+.magnetic {
+  transition: transform 0.2s ease;
+}
+
+.magnetic:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+.success__message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #60a5fa;
+  font-size: 14px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #60a5fa;
+  position: relative;
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #60a5fa;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  animation: checkPop 0.4s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes checkPop {
+  to {
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact__form,
+.contact__left,
+.form__group {
+  will-change: transform, opacity;
+}
+/* #endregion CONTACT */
 
 @media (max-width: 900px) {
   .project__wrapper {
@@ -640,4 +1000,21 @@ a {
   .project__wrapper:nth-child(even) {
     flex-direction: column;
   }
+
+    .contact__wrapper {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+  
+    .contact__left {
+      text-align: center;
+    }
+  
+    .contact__left p {
+      margin: 0 auto;
+    }
+  
+    .contact__form {
+      padding: 36px 24px;
+    }
 }
