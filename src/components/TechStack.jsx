@@ -9,16 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 const TechStack = () => {
 	const trackRef = useRef(null);
 
-	// duplicate for seamless loop
 	const loopStack = [...techStack, ...techStack];
 
 	useEffect(() => {
 		const track = trackRef.current;
 		if (!track) return;
 
-		// ✅ Marquee smooth scroll using GSAP
-		const totalWidth = track.scrollWidth / 2; // half because duplicated
-		const speed = 60; // pixels per second
+		const totalWidth = track.scrollWidth / 2; 
+		const speed = 60; 
 		const duration = totalWidth / speed;
 
 		const tween = gsap.to(track, {
@@ -32,14 +30,12 @@ const TechStack = () => {
 			},
 		});
 
-		// pause/resume on hover
 		const marquee = track.parentElement;
 		const pause = () => tween.pause();
 		const resume = () => tween.resume();
 		marquee.addEventListener('mouseenter', pause);
 		marquee.addEventListener('mouseleave', resume);
 
-		// ✅ Fade in heading + tech cards
 		gsap.fromTo(
 			'.techstack__container h2',
 			{ y: 40, opacity: 0 },

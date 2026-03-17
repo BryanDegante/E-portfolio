@@ -1,7 +1,7 @@
 export const ProjectData = [
 	{
 		name: 'EC 5 Star Transports',
-		screenshot: '/src/assets/ProjectSc/ec5star.png',
+		screenshot: '/ProjectSc/ec5star.png',
 		website: 'https://ec5startransports.com',
 		tech: ['JavaScript','GSAP', 'React', 'CSS', 'Resend', 'Vercel'],
 		description:
@@ -9,7 +9,7 @@ export const ProjectData = [
 	},
 	{
 		name: 'Movie Site',
-		screenshot: '/src/assets/ProjectSc/MovieSite.png',
+		screenshot: '/ProjectSc/MovieSite.png',
 		website: 'sit',
 		tech: ['JavaScript','GSAP', 'React', 'CSS'],
 		description:
@@ -17,7 +17,7 @@ export const ProjectData = [
 	},
 	{
 		name: 'Awwards Website Clone',
-		screenshot: '/src/assets/ProjectSc/Awwards.png',
+		screenshot: 'ProjectSc/Awwards.png',
 		website: 'https://bryandegante.github.io/Awwards-Website-Clone/',
 		tech: ['JavaScript','GSAP', 'React', 'Tailwind Css', 'GitHub'],
 		description:

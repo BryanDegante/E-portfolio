@@ -11,7 +11,7 @@ export const techStack = [
 	{ name: 'Tailwind Css', icon: RiTailwindCssFill, color: '#15C2B8' },
 	{ name: 'ThreeJs', icon: TbBrandThreejs, color: '#fff' },
 	{ name: 'Vercel', icon: RiVercelFill, color: '#fff' },
-	{ name: 'Vite', svg: '/src/assets/tech/vite.svg' },
-	{ name: 'GSAP', svg: '/src/assets/tech/gsap.png' },
-	{ name: 'Resend', svg: '/src/assets/tech/resend.png' },
+	{ name: 'Vite', svg: '/Tech/vite.svg' },
+	{ name: 'GSAP', svg: '/Tech/gsap.png' },
+	{ name: 'Resend', svg: '/Tech/resend.png' },
 ];
