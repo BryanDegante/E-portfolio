@@ -1,4 +1,3 @@
-// Contact.jsx — ULTRA PREMIUM + SCROLLTRIGGER
 import emailjs from '@emailjs/browser';
 import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
@@ -14,10 +13,8 @@ const Contact = () => {
 	const [loading, setLoading] = useState(false);
 	const [sent, setSent] = useState(false);
 
-	// 🔥 ScrollTrigger Animations
 	useEffect(() => {
 		const ctx = gsap.context(() => {
-			// Parallax on left text
 			gsap.to('.contact__left', {
 				y: -40,
 				scrollTrigger: {
@@ -28,7 +25,6 @@ const Contact = () => {
 				},
 			});
 
-			// Main reveal
 			gsap.from('.contact__left', {
 				scrollTrigger: {
 					trigger: sectionRef.current,
@@ -120,7 +116,6 @@ const Contact = () => {
 				setSent(true);
 				formRef.current.reset();
 
-				// 🔥 Form pulse
 				gsap.fromTo(
 					formRef.current,
 					{ scale: 1 },
@@ -133,7 +128,6 @@ const Contact = () => {
 					},
 				);
 
-				// Success message animation
 				gsap.fromTo(
 					'.success__message',
 					{ y: 10, opacity: 0 },

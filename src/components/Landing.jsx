@@ -27,18 +27,21 @@ const Landing = () => {
 						<SocialButton
 							text="Github"
 							icon={<FaGithub className="social__icon" />}
+							link="https://github.com/BryanDegante"
 						/>
 					</li>
 					<li>
 						<SocialButton
 							text="LinkedIn"
 							icon={<FaLinkedin className="social__icon" />}
+							link="https://www.linkedin.com/in/bryandegante-dev/"
 						/>
 					</li>
 					<li>
 						<SocialButton
 							text="Resume"
 							icon={<FaRegFilePdf className="social__icon" />}
+							link="/Resume.pdf"
 						/>
 					</li>
 				</ul>

@@ -2,16 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import logo from '../assets/ClearLogo.png';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
+import ContactModal from './UI/ContactModal';
+
 
 const Nav = () => {
 	const [active, setActive] = useState('Home');
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
 	const navContainerRef = useRef(null);
+	const contactBtnRef = useRef(null);
 
 	const [lastScrollY, setLastScrollY] = useState(0);
 	const [isNavVisible, setIsNavVisible] = useState(true);
 	const { y: currentScrollY } = useWindowScroll();
 
-	// Floating nav scroll logic
 	useEffect(() => {
 		if (currentScrollY === 0) {
 			setIsNavVisible(true);
@@ -26,7 +30,6 @@ const Nav = () => {
 		setLastScrollY(currentScrollY);
 	}, [currentScrollY, lastScrollY]);
 
-	// GSAP animation for nav sliding
 	useEffect(() => {
 		if (navContainerRef.current) {
 			gsap.to(navContainerRef.current, {
@@ -39,7 +42,6 @@ const Nav = () => {
 		}
 	}, [isNavVisible]);
 
-	// Active link highlighting
 	useEffect(() => {
 		const sections = document.querySelectorAll('section[id]');
 		const observer = new IntersectionObserver(
@@ -61,33 +63,61 @@ const Nav = () => {
 		{ id: 'Home', href: '/' },
 		{ id: 'About', href: '#About' },
 		{ id: 'Projects', href: '#Projects' },
-		{ id: 'Contact', href: '#Contact' },
+		{ id: 'Contact', isModal: true },
 	];
 
 	return (
-		<div ref={navContainerRef} className="nav-Container">
-			<nav className="glass-nav">
-				<div className="nav-content">
-					<div className="logo">
-						<img src={logo} alt="Logo" />
+		<>
+			<div ref={navContainerRef} className="nav-Container">
+				<nav className="glass-nav">
+					<div className="nav-content">
+						<div className="logo">
+							<img src={logo} alt="Logo" />
+						</div>
+
+						<ul className="nav-links">
+							{links.map((link) => (
+								<li key={link.id}>
+									{link.isModal ? (
+										<button
+											ref={contactBtnRef}
+											onClick={() => {
+												setActive('Contact');
+												setIsModalOpen(true);
+											}}
+											className={`link__hover--effect ${
+												active === link.id
+													? 'active-link'
+													: ''
+											}`}
+										>
+											{link.id}
+										</button>
+									) : (
+										<a
+											href={link.href}
+											className={`link__hover--effect ${
+												active === link.id
+													? 'active-link'
+													: ''
+											}`}
+										>
+											{link.id}
+										</a>
+									)}
+								</li>
+							))}
+						</ul>
 					</div>
-					<ul className="nav-links">
-						{links.map((link) => (
-							<li key={link.id}>
-								<a
-									href={link.href}
-									className={`link__hover--effect ${
-										active === link.id ? 'active-link' : ''
-									}`}
-								>
-									{link.id}
-								</a>
-							</li>
-						))}
-					</ul>
-				</div>
-			</nav>
-		</div>
+				</nav>
+			</div>
+
+			<ContactModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				triggerRef={contactBtnRef}
+			/>
+		</>
 	);
 };
 

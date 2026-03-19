@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { FaGithub, FaLinkedin, FaArrowUp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaArrowUp, FaRegFilePdf } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SocialButton from './UI/SocialButton';
@@ -36,7 +36,6 @@ const Footer = () => {
 		<footer id="Footer" ref={footerRef}>
 			<div className="container">
 				<div className="footer__content">
-					{/* LEFT */}
 					<div className="footer__left">
 						<h2 className="footer__logo">Bryan Degante</h2>
 						<p className="footer__tagline">
@@ -48,19 +47,21 @@ const Footer = () => {
 							<SocialButton
 								text="Github"
 								icon={<FaGithub className="social__icon" />}
+								link="https://github.com/BryanDegante"
 							/>
 							<SocialButton
-								text="Github"
-								icon={<FaGithub className="social__icon" />}
+								text="LinkedIn"
+								icon={<FaLinkedin className="social__icon" />}
+								link="https://www.linkedin.com/in/bryandegante-dev/"
 							/>
 							<SocialButton
-								text="Github"
-								icon={<FaGithub className="social__icon" />}
+								text="Resume"
+								icon={<FaRegFilePdf className="social__icon" />}
+								link="/Resume.pdf"
 							/>
 						</div>
 					</div>
 
-					{/* RIGHT */}
 					<div className="footer__right">
 						<a
 							className="link__hover--effect text__color--muted"
