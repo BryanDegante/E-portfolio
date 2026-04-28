@@ -2,7 +2,7 @@ export const ProjectData = [
 	{
 		name: 'EC 5 Star Transports',
 		screenshot: '/ProjectSc/ec5star.png',
-		website: 'https://ec5startransports.com',
+		website: 'https://ec5startransports-f8jw4rlft-bryans-projects-209e1fda.vercel.app/',
 		tech: ['JavaScript', 'GSAP', 'React', 'CSS', 'Resend', 'Vercel'],
 		description:
 			'Designed and developed a modern, luxury-styled website for a family-owned vehicle transport company. The goal was to build trust quickly through premium visuals, smooth animations, and clear conversion paths.Built with React and GSAP, the site features glassmorphism UI elements, an animated navigation experience, and responsive layouts optimized for both desktop and mobile.Special focus was placed on performance, reusable components, and high- end visual polish. ',

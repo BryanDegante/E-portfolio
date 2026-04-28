@@ -3,47 +3,59 @@ import logo from '../assets/ClearLogo.png';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 import ContactModal from './UI/ContactModal';
-
+import NavModal from './UI/NavModal';
 
 const Nav = () => {
 	const [active, setActive] = useState('Home');
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isContactOpen, setIsContactOpen] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const navContainerRef = useRef(null);
 	const contactBtnRef = useRef(null);
+	const hamburgerRef = useRef(null);
 
 	const [lastScrollY, setLastScrollY] = useState(0);
 	const [isNavVisible, setIsNavVisible] = useState(true);
 	const { y: currentScrollY } = useWindowScroll();
 
+	// ─────────────────────────────
+	// SCROLL BEHAVIOR
+	// ─────────────────────────────
 	useEffect(() => {
+		if (!navContainerRef.current) return;
+
 		if (currentScrollY === 0) {
 			setIsNavVisible(true);
 			navContainerRef.current.classList.remove('floating-nav');
 		} else if (currentScrollY > lastScrollY) {
 			setIsNavVisible(false);
 			navContainerRef.current.classList.add('floating-nav');
-		} else if (currentScrollY < lastScrollY) {
+		} else {
 			setIsNavVisible(true);
 			navContainerRef.current.classList.add('floating-nav');
 		}
+
 		setLastScrollY(currentScrollY);
-	}, [currentScrollY, lastScrollY]);
+	}, [currentScrollY]);
 
 	useEffect(() => {
-		if (navContainerRef.current) {
-			gsap.to(navContainerRef.current, {
-				y: isNavVisible ? 0 : -120,
-				opacity: isNavVisible ? 1 : 0,
-				duration: 0.25,
-				ease: 'power2.out',
-				pointerEvents: isNavVisible ? 'auto' : 'none',
-			});
-		}
+		if (!navContainerRef.current) return;
+
+		gsap.to(navContainerRef.current, {
+			y: isNavVisible ? 0 : -120,
+			opacity: isNavVisible ? 1 : 0,
+			duration: 0.25,
+			ease: 'power2.out',
+			pointerEvents: isNavVisible ? 'auto' : 'none',
+		});
 	}, [isNavVisible]);
 
+	// ─────────────────────────────
+	// SECTION TRACKING
+	// ─────────────────────────────
 	useEffect(() => {
 		const sections = document.querySelectorAll('section[id]');
+
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -52,18 +64,51 @@ const Nav = () => {
 					}
 				});
 			},
-			{ threshold: 0.3 },
+			{ threshold: 0.3 }
 		);
 
 		sections.forEach((section) => observer.observe(section));
 		return () => observer.disconnect();
 	}, []);
 
+	// ─────────────────────────────
+	// HAMBURGER ANIMATION
+	// ─────────────────────────────
+	useEffect(() => {
+		if (!hamburgerRef.current) return;
+
+		const lines = hamburgerRef.current.querySelectorAll('span');
+
+		gsap.to(lines[0], {
+			rotate: isMobileMenuOpen ? 45 : 0,
+			y: isMobileMenuOpen ? 6 : 0,
+			duration: 0.25,
+		});
+
+		gsap.to(lines[1], {
+			opacity: isMobileMenuOpen ? 0 : 1,
+			duration: 0.2,
+		});
+
+		gsap.to(lines[2], {
+			rotate: isMobileMenuOpen ? -45 : 0,
+			y: isMobileMenuOpen ? -6 : 0,
+			duration: 0.25,
+		});
+	}, [isMobileMenuOpen]);
+
+	// ─────────────────────────────
+	// LINKS
+	// ─────────────────────────────
 	const links = [
 		{ id: 'Home', href: '/' },
 		{ id: 'About', href: '#About' },
 		{ id: 'Projects', href: '#Projects' },
-		{ id: 'Contact', isModal: true },
+		{
+			id: 'Contact',
+			isModal: true,
+			onClick: () => setIsContactOpen(true),
+		},
 	];
 
 	return (
@@ -75,6 +120,7 @@ const Nav = () => {
 							<img src={logo} alt="Logo" />
 						</div>
 
+						{/* DESKTOP LINKS */}
 						<ul className="nav-links">
 							{links.map((link) => (
 								<li key={link.id}>
@@ -83,7 +129,7 @@ const Nav = () => {
 											ref={contactBtnRef}
 											onClick={() => {
 												setActive('Contact');
-												setIsModalOpen(true);
+												setIsContactOpen(true);
 											}}
 											className={`link__hover--effect ${
 												active === link.id
@@ -108,14 +154,36 @@ const Nav = () => {
 								</li>
 							))}
 						</ul>
+
+						{/* HAMBURGER */}
+						<div
+							ref={hamburgerRef}
+							className="hamburger"
+							onClick={() =>
+								setIsMobileMenuOpen((prev) => !prev)
+							}
+						>
+							<span />
+							<span />
+							<span />
+						</div>
 					</div>
 				</nav>
 			</div>
 
+			{/* CONTACT MODAL */}
 			<ContactModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
+				isOpen={isContactOpen}
+				onClose={() => setIsContactOpen(false)}
 				triggerRef={contactBtnRef}
+			/>
+
+			{/* MOBILE NAV */}
+			<NavModal
+				isOpen={isMobileMenuOpen}
+				onClose={() => setIsMobileMenuOpen(false)}
+				links={links}
+				setActive={setActive}
 			/>
 		</>
 	);
