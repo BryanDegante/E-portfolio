@@ -18,9 +18,6 @@ const Nav = () => {
 	const [isNavVisible, setIsNavVisible] = useState(true);
 	const { y: currentScrollY } = useWindowScroll();
 
-	// ─────────────────────────────
-	// SCROLL BEHAVIOR
-	// ─────────────────────────────
 	useEffect(() => {
 		if (!navContainerRef.current) return;
 
@@ -50,9 +47,6 @@ const Nav = () => {
 		});
 	}, [isNavVisible]);
 
-	// ─────────────────────────────
-	// SECTION TRACKING
-	// ─────────────────────────────
 	useEffect(() => {
 		const sections = document.querySelectorAll('section[id]');
 
@@ -71,9 +65,6 @@ const Nav = () => {
 		return () => observer.disconnect();
 	}, []);
 
-	// ─────────────────────────────
-	// HAMBURGER ANIMATION
-	// ─────────────────────────────
 	useEffect(() => {
 		if (!hamburgerRef.current) return;
 
@@ -97,9 +88,7 @@ const Nav = () => {
 		});
 	}, [isMobileMenuOpen]);
 
-	// ─────────────────────────────
-	// LINKS
-	// ─────────────────────────────
+
 	const links = [
 		{ id: 'Home', href: '/' },
 		{ id: 'About', href: '#About' },
@@ -171,14 +160,12 @@ const Nav = () => {
 				</nav>
 			</div>
 
-			{/* CONTACT MODAL */}
 			<ContactModal
 				isOpen={isContactOpen}
 				onClose={() => setIsContactOpen(false)}
 				triggerRef={contactBtnRef}
 			/>
 
-			{/* MOBILE NAV */}
 			<NavModal
 				isOpen={isMobileMenuOpen}
 				onClose={() => setIsMobileMenuOpen(false)}

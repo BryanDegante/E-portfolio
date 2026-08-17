@@ -6,7 +6,6 @@ import ProjectTech from './ProjectTech';
 const ProjectCard = ({ website, name, src, tech }) => {
 	const cardRef = useRef(null);
 
-	// 🔥 magnetic hover
 	useEffect(() => {
 		const card = cardRef.current;
 		if (!card) return;
@@ -42,7 +41,6 @@ const ProjectCard = ({ website, name, src, tech }) => {
 		};
 	}, []);
 
-	// 🔥 filter tech
 	const filteredTech = techStack.filter((t) => tech.includes(t.name));
 
 	return (

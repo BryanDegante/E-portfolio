@@ -37,7 +37,6 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 				ref={modalRef}
 				onClick={(e) => e.stopPropagation()}
 			>
-				{/* HEADER */}
 				<div className="navModal-header">
 					<p>Menu</p>
 					<button className="close-btn" onClick={onClose}>
@@ -45,7 +44,6 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 					</button>
 				</div>
 
-				{/* LINKS */}
 				<ul className="navModal-links">
 					{links.map((link, i) => (
 						<li
@@ -78,7 +76,6 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 					))}
 				</ul>
 
-				{/* FOOTER */}
 				<div className="navModal-footer">
 					<p>© {new Date().getFullYear()} Portfolio</p>
 				</div>

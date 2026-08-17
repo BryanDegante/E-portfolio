@@ -66,12 +66,11 @@ const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
 		const points = new THREE.Points(geometry, material);
 		scene.add(points);
 
-		// ✅ No Clock — using RAF timestamp instead
 		const animate = (time) => {
 			requestAnimationFrame(animate);
 
 			const positionsArray = geometry.attributes.position.array;
-			const seconds = time * 0.001; // convert ms → seconds
+			const seconds = time * 0.001; 
 
 			for (let i = 0; i < particleCount; i++) {
 				positionsArray[i * 3 + 1] += Math.sin(seconds + i) * speeds[i];

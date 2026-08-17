@@ -17,7 +17,6 @@ const Projects = () => {
 				const right = el.querySelector('.project__right');
 				const image = el.querySelector('.project__card');
 
-				// main reveal timeline
 				const tl = gsap.timeline({
 					scrollTrigger: {
 						trigger: el,
@@ -41,7 +40,6 @@ const Projects = () => {
 					'-=0.6',
 				);
 
-				// 🔥 subtle parallax on image
 				gsap.to(image, {
 					y: -30,
 					ease: 'none',
