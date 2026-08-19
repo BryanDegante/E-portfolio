@@ -13,7 +13,6 @@ const Home = () => {
       <About />
       <Projects />
       <Contact />
-      <Footer/>
     </main>
   )
 }

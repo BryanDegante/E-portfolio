@@ -71,15 +71,21 @@ const Footer = () => {
 						</a>
 						<a
 							className="link__hover--effect text__color--muted"
-							href="#Projects"
-						>
-							Projects
-						</a>
-						<a
-							className="link__hover--effect text__color--muted"
 							href="#About"
 						>
 							About
+						</a>
+						<a
+							className="link__hover--effect text__color--muted"
+							href="/Services"
+						>
+							Services
+						</a>
+						<a
+							className="link__hover--effect text__color--muted"
+							href="#Projects"
+						>
+							Projects
 						</a>
 						<a
 							className="link__hover--effect text__color--muted"
