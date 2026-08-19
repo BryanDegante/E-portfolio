@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import TechCard from './UI/TechCard';
-import { techStack } from '../data/techData';
+import TechCard from '../UI/TechCard';
+import { techStack } from '../../data/techData';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,8 +15,8 @@ const TechStack = () => {
 		const track = trackRef.current;
 		if (!track) return;
 
-		const totalWidth = track.scrollWidth / 2; 
-		const speed = 60; 
+		const totalWidth = track.scrollWidth / 2;
+		const speed = 60;
 		const duration = totalWidth / speed;
 
 		const tween = gsap.to(track, {

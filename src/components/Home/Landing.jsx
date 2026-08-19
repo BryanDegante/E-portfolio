@@ -1,0 +1,57 @@
+import React, { useEffect, useRef } from 'react';
+import SocialButton from '../UI/SocialButton';
+import { FaGithub, FaLinkedin, FaRegFilePdf } from 'react-icons/fa';
+import gsap from 'gsap';
+import Particles from '../UI/Particles';
+
+const Landing = () => {
+	return (
+		<section id="Landing">
+			<Particles />
+
+			<div className="row">
+				<div className="landing__container">
+					<div className="landing__container--text">
+						<h1 className="text__color--normal">
+							I'm Bryan Degante
+						</h1>
+						<h2 className="text__color--normal">
+							A Frontend Developer <br /> Focused on clean UI &
+							Smooth Animations
+						</h2>
+						<h3 className="text__color--normal">
+							Building responsive interfaces with modern web
+							technologies.
+						</h3>
+					</div>
+
+					<ul className="social__container">
+						<li>
+							<SocialButton
+								text="Github"
+								icon={<FaGithub className="social__icon" />}
+								link="https://github.com/BryanDegante"
+							/>
+						</li>
+						<li>
+							<SocialButton
+								text="LinkedIn"
+								icon={<FaLinkedin className="social__icon" />}
+								link="https://www.linkedin.com/in/bryandegante-dev/"
+							/>
+						</li>
+						<li>
+							<SocialButton
+								text="Resume"
+								icon={<FaRegFilePdf className="social__icon" />}
+								link="/Resume.pdf"
+							/>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export default Landing;

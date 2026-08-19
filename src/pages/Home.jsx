@@ -1,20 +1,19 @@
-import React from 'react'
-import Landing from '../components/Landing'
-import About from '../components/About'
-import TechStack from '../components/TechStack'
-import Projects from '../components/Projects'
-import Contact from '../components/Contact'
-import Footer from '../components/Footer'
+import React from 'react';
+import Landing from '../components/Home/Landing';
+import About from '../components/Home/About';
+import Projects from '../components/Portfolio/Projects';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 const Home = () => {
-  return (
-      <main>
-      <Landing />
-      <About />
-      <Projects />
-      <Contact />
-    </main>
-  )
-}
+	return (
+		<main>
+			<Landing />
+			<About />
+			<Projects />
+			<Contact />
+		</main>
+	);
+};
 
-export default Home
+export default Home;
