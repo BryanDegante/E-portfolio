@@ -4,11 +4,13 @@ import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 import ContactModal from './UI/ContactModal';
 import NavModal from './UI/NavModal';
+import { useLocation } from 'react-router-dom';
 
 const Nav = () => {
 	const [active, setActive] = useState('Home');
 	const [isContactOpen, setIsContactOpen] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const location = useLocation();
 
 	const navContainerRef = useRef(null);
 	const contactBtnRef = useRef(null);
@@ -88,16 +90,27 @@ const Nav = () => {
 		});
 	}, [isMobileMenuOpen]);
 
-	const links = [
-		{ id: 'Home', href: '/' },
-		{ id: 'About', href: '#About' },
-		{ id: 'Projects', href: '#Projects' },
-		{
-			id: 'Contact',
-			isModal: true,
-			onClick: () => setIsContactOpen(true),
-		},
-	];
+	const links =
+		location.pathname === '/services'
+			? [
+					{ id: 'Home', href: '/' },
+					{ id: 'Tiers', href: '#Tiers' },
+					{
+						id: 'Contact',
+						isModal: true,
+						onClick: () => setIsContactOpen(true),
+					},
+				]
+			: [
+					{ id: 'Services', href: '/services' },
+					{ id: 'About', href: '#About' },
+					{ id: 'Projects', href: '#Projects' },
+					{
+						id: 'Contact',
+						isModal: true,
+						onClick: () => setIsContactOpen(true),
+					},
+				];
 
 	return (
 		<>

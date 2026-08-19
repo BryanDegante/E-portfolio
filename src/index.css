@@ -425,6 +425,7 @@ a {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  font-size: 16px;
   position: relative;
   overflow: hidden;
   transition-duration: 0.3s;
@@ -452,7 +453,8 @@ a {
   width: 0%;
   opacity: 0;
   color: white;
-  font-size: 1.2em !important;
+  text-align: center;
+  font-size: 1em !important;
   font-weight: 600;
   transition-duration: 0.3s;
 }

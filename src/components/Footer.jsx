@@ -48,16 +48,19 @@ const Footer = () => {
 								text="Github"
 								icon={<FaGithub className="social__icon" />}
 								link="https://github.com/BryanDegante"
+								newPage={true}
 							/>
 							<SocialButton
 								text="LinkedIn"
 								icon={<FaLinkedin className="social__icon" />}
 								link="https://www.linkedin.com/in/bryandegante-dev/"
+								newPage={true}
 							/>
 							<SocialButton
 								text="Resume"
 								icon={<FaRegFilePdf className="social__icon" />}
 								link="/Resume.pdf"
+								newPage={true}
 							/>
 						</div>
 					</div>

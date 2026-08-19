@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import SocialButton from '../UI/SocialButton';
 import { FaGithub, FaLinkedin, FaRegFilePdf } from 'react-icons/fa';
-import gsap from 'gsap';
 import Particles from '../UI/Particles';
 
 const Landing = () => {
@@ -31,6 +30,7 @@ const Landing = () => {
 								text="Github"
 								icon={<FaGithub className="social__icon" />}
 								link="https://github.com/BryanDegante"
+								newPage={true}
 							/>
 						</li>
 						<li>
@@ -38,6 +38,7 @@ const Landing = () => {
 								text="LinkedIn"
 								icon={<FaLinkedin className="social__icon" />}
 								link="https://www.linkedin.com/in/bryandegante-dev/"
+								newPage={true}
 							/>
 						</li>
 						<li>
@@ -45,6 +46,7 @@ const Landing = () => {
 								text="Resume"
 								icon={<FaRegFilePdf className="social__icon" />}
 								link="/Resume.pdf"
+								newPage={true}
 							/>
 						</li>
 					</ul>
