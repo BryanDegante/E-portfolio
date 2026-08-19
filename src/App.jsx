@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Nav from './components/Nav';
 import Particles from './components/UI/Particles';
 import Services from './pages/Services';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/services' element={<Services />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </div>
