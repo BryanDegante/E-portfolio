@@ -832,39 +832,73 @@ a {
 
 /* #region SERVICE */
 
-
-.tier__header{
+.Tiers__header {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
-.tier__title{
+.tier__text {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 0;
 }
 
 .tier__cards {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
-.tierCard {
+.tier__Card {
   padding: 12px;
   max-width: 800px;
   width: 100%;
   display: flex;
-  flex-direction: column;
   background: var(--card);
-  padding: 20px 40px ;
+  padding: 20px 40px;
   border-radius: 20px;
 }
 
-.tier__description{
-  padding: 0 20px;
+.tier__Card.active{
+  border: red 2px solid ;
+}
+
+.tier__header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tier__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tier__description {
   display: flex;
   align-items: center;
   flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  gap: 20px;
+}
+
+.tier__Card.active .tier__description {
+  max-height: 500px;
+  padding: 30px 20px;
+}
+
+
+.tier__list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px
 }
 
 
