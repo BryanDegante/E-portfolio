@@ -153,7 +153,7 @@ const Contact = () => {
 			<div className="container">
 				<div className="contact__wrapper">
 					<div className="contact__left">
-						<h2 className="contact__title">
+						<h2 className="contact__title text__color--blue">
 							Let's Build Something Great
 						</h2>
 						<p>
