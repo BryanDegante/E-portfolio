@@ -6,12 +6,10 @@
   --purple: linear-gradient(90deg, #7c44ff 0%, #4bc6ff 40%, #1900ff 100%);
   --blue-gradient: linear-gradient(90deg, #3b82f6, #06b6d4);
   --card-bg: #0f172a;
-  --hero: radial-gradient(
-    circle at 75% 35%,
-    rgba(59, 130, 246, 0.35) 0%,
-    rgba(59, 130, 246, 0.18) 20%,
-    rgba(2, 6, 23, 0) 40%
-  );
+  --hero: radial-gradient(circle at 75% 35%,
+      rgba(59, 130, 246, 0.35) 0%,
+      rgba(59, 130, 246, 0.18) 20%,
+      rgba(2, 6, 23, 0) 40%);
   --section: #020617;
   --card: #0b1120;
   --text-color: #e5e7eb;
@@ -90,13 +88,14 @@ img {
 .text__color--normal {
   color: var(--text-color);
 }
+
 .text__color--gradient {
   color: var(--blue-gradient);
 }
 
 .text__color--purple {
   font-weight: 800;
-  
+
   background: linear-gradient(90deg, #8b5cf6, #a78bfa, #8b5cf6, #b794f4);
   background-size: 300% 100%;
   -webkit-background-clip: text;
@@ -109,12 +108,12 @@ img {
 
 .text__color--blue {
   background: linear-gradient(90deg, #3b82f6, #06b6d4, #60a5fa, #3b82f6);
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  
-    animation: gradientShift 6s linear infinite;
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientShift 6s linear infinite;
 }
 
 @keyframes gradientShift {
@@ -509,12 +508,10 @@ a {
   width: min(300px, 40%);
   height: 1px;
   margin: 80px auto 0;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(59, 130, 246, 0.5),
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(59, 130, 246, 0.5),
+      transparent);
 }
 
 .about__wrapper {
@@ -562,20 +559,16 @@ a {
   overflow: hidden;
   width: 100%;
 
-  mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 5%,
-    rgba(0, 0, 0, 1) 15%,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 95%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 5%,
-    rgba(0, 0, 0, 1) 15%,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 95%
-  );
+  mask-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0) 5%,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 95%);
+  -webkit-mask-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0) 5%,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 95%);
 }
 
 .techstack__track {
@@ -718,12 +711,10 @@ a {
   content: '';
   position: absolute;
   inset: -150%;
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.08),
-    transparent 70%
-  );
+  background: linear-gradient(120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.08),
+      transparent 70%);
   transform: rotate(25deg) translateX(-100%);
   transition: transform 0.9s ease;
   pointer-events: none;
@@ -842,6 +833,40 @@ a {
 /* #region SERVICE */
 
 
+.tier__header{
+  display: flex;
+  flex-direction: column;
+}
+
+.tier__title{
+  display: flex;
+  align-items: center;
+}
+
+.tier__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tierCard {
+  padding: 12px;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  padding: 20px 40px ;
+  border-radius: 20px;
+}
+
+.tier__description{
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 /* #endregion SERVICE */
 
@@ -849,11 +874,9 @@ a {
 #Contact {
   padding: 140px 0;
   background:
-    radial-gradient(
-      circle at 20% 20%,
+    radial-gradient(circle at 20% 20%,
       rgba(59, 130, 246, 0.12),
-      transparent 40%
-    ),
+      transparent 40%),
     #020617;
   position: relative;
   overflow: hidden;
@@ -921,12 +944,10 @@ a {
   inset: -1px;
   border-radius: 24px;
   padding: 1px;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgb(59, 131, 246),
-    transparent
-  );
+  background: linear-gradient(120deg,
+      transparent,
+      rgb(59, 131, 246),
+      transparent);
   background-size: 200% 200%;
   animation: borderFlow 6s linear infinite;
 
@@ -991,10 +1012,10 @@ a {
     0 8px 30px rgba(59, 130, 246, 0.08);
 }
 
-.form__group input:focus + label,
-.form__group input:not(:placeholder-shown) + label,
-.form__group textarea:focus + label,
-.form__group textarea:not(:placeholder-shown) + label {
+.form__group input:focus+label,
+.form__group input:not(:placeholder-shown)+label,
+.form__group textarea:focus+label,
+.form__group textarea:not(:placeholder-shown)+label {
   top: 0;
   font-size: 11px;
   color: #60a5fa;
@@ -1128,11 +1149,9 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    500px circle at var(--x) var(--y),
-    rgba(59, 130, 246, 0.15),
-    transparent 40%
-  );
+  background: radial-gradient(500px circle at var(--x) var(--y),
+      rgba(59, 130, 246, 0.15),
+      transparent 40%);
   opacity: 0;
   transition: 0.3s;
 }
@@ -1140,6 +1159,7 @@ a {
 .modal__content:hover::before {
   opacity: 1;
 }
+
 .modal__close {
   position: absolute;
   top: 16px;
@@ -1205,7 +1225,7 @@ a {
   font-weight: 800;
   background: var(--blue-gradient);
   -webkit-background-clip: text;
-  background-clip:text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }
@@ -1467,20 +1487,16 @@ a {
   }
 
   .techstack__marquee {
-    mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 10%,
-      rgba(0, 0, 0, 1) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 10%,
-      rgba(0, 0, 0, 1) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    mask-image: linear-gradient(to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 90%,
+        rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 90%,
+        rgba(0, 0, 0, 0) 100%);
   }
 
   .techstack__track {

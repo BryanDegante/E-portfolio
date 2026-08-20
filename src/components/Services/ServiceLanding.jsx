@@ -2,10 +2,12 @@ import React from 'react';
 import SocialButton from '../UI/SocialButton';
 import { FaSearchDollar, FaEnvelope } from 'react-icons/fa';
 import gsap from 'gsap';
+import Particles from '../UI/Particles';
 
 const ServiceLanding = () => {
 	return (
 		<section id="Landing">
+			<Particles />
 			<div className="row">
 				<div className="landing__container">
 					<div className="landing__container--text">
@@ -24,7 +26,9 @@ const ServiceLanding = () => {
 						<li>
 							<SocialButton
 								text="Pricing"
-								icon={<FaSearchDollar className="social__icon" />}
+								icon={
+									<FaSearchDollar className="social__icon" />
+								}
 								link="#Tiers"
 							/>
 						</li>

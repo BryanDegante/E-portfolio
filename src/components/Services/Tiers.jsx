@@ -15,7 +15,7 @@ const Tiers = () => {
 						your project
 					</p>
 				</div>
-				<div className="Tier__cards">
+				<div className="tier__cards">
 					{TierData.map((tier, index) => (
 						<TierCard
 							key={index}
