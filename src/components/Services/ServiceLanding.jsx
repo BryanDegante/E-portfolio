@@ -7,7 +7,6 @@ import Particles from '../UI/Particles';
 const ServiceLanding = () => {
 	return (
 		<section id="Landing">
-			<Particles />
 			<div className="row">
 				<div className="landing__container">
 					<div className="landing__container--text">

@@ -14,7 +14,7 @@ const TierCard = ({
 
 	return (
 		<div className={`tier__Card ${activeTier ? 'active' : ''}`}>
-			<div className="tier__left">
+			<div className='tier__wrapper'>
 				<div className="tier__header">
 					<div className="tier__title">
 						<span className=" text__color--purple">
@@ -36,8 +36,9 @@ const TierCard = ({
 					<p className="text__color--muted">{best}</p>
 				</div>
 			</div>
-			<button onClick={() => selectTier(title)}>
-				<FaPlus className="" />
+
+			<button className='tier__button' onClick={() => selectTier(title)}>
+				<FaPlus  />
 			</button>
 		</div>
 	);

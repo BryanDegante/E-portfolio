@@ -11,7 +11,7 @@
       rgba(59, 130, 246, 0.18) 20%,
       rgba(2, 6, 23, 0) 40%);
   --section: #020617;
-  --card: #0b1120;
+  --card: #0b1120b4;
   --text-color: #e5e7eb;
   --text-muted: #9ca3af;
 }
@@ -832,40 +832,81 @@ a {
 
 /* #region SERVICE */
 
-.Tiers__header {
+.tiers__wrapper{
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .tier__text {
   display: flex;
+  align-items: center;
   flex-direction: column;
-  gap: 20px;
-  padding: 40px 0;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 0;
 }
 
 .tier__cards {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 }
 
 .tier__Card {
-  padding: 12px;
-  max-width: 800px;
+  max-width: 750px;
   width: 100%;
   display: flex;
   background: var(--card);
+  justify-content: center;
+  align-items: center;
   padding: 20px 40px;
+  position: relative;
   border-radius: 20px;
+  transition: all ease 300ms;
 }
 
-.tier__Card.active{
-  border: red 2px solid ;
+.tier__Card::before{
+  content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 20px;
+    padding: 2px;
+    background-image: linear-gradient(120deg,
+        transparent,
+        rgb(59, 131, 246),
+        transparent);
+    background-size: 200% 200%;
+    animation: borderFlow 6s linear infinite;
+  
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.tier__Card.active::before{
+background-image: linear-gradient(120deg,
+      transparent,
+      #7c44ff,
+      #44d3ff,
+      transparent);
+}
+
+
+
+
+.tier__wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-right: 20px;
 }
 
 .tier__header {
@@ -900,6 +941,29 @@ a {
   flex-direction: column;
   gap: 15px
 }
+
+.tier__button{
+  position: absolute;
+  background: none;
+  cursor: pointer;
+  border: none;
+  right: 20px;
+  top: 20px; 
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: all ease 300ms;
+}
+
+.tier__button:hover{
+  color: var(--primary-hover);
+}
+
+.tier__Card.active .tier__button{
+  transform: scale(1.5) rotateZ(135deg);
+  color: var(--primary);
+}
+
+
 
 
 /* #endregion SERVICE */
