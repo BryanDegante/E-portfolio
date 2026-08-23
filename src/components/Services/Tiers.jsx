@@ -36,10 +36,12 @@ const Tiers = () => {
 							/>
 						))}
 					</div>
-					<p className="text__color--muted">
-						<span className="text__color--blue">**</span> A 50%
-						deposit is required to begin the project. The remaining
-						50% is due upon website completion and delivery.{' '}
+					<p className=" disclaimer text__color--muted">
+						<span className="text__color--purple">**</span> A{' '}
+						<span className="text__color--blue">50%</span> deposit
+						is required to begin the project. The remaining{' '}
+						<span className="text__color--blue">50%</span> is due
+						upon website completion and delivery.{' '}
 						<span className="text__color--purple">**</span>
 					</p>
 				</div>

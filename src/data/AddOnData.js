@@ -10,7 +10,7 @@ export const AddOnData = [
 		title: 'Hosting Assistance',
 		price: '25',
 		description:
-			'Help finding and choosing a hosting provider for your website.',
+			'Help finding and choosing a hosting provider. If requested, I can purchase the hosting plan on your behalf.',
 	},
 	{
 		type: 'Assistance',
