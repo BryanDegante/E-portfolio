@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import SocialButton from '../UI/SocialButton';
 import { FaSearchDollar, FaEnvelope } from 'react-icons/fa';
 import gsap from 'gsap';
-import Particles from '../UI/Particles';
 import ContactButton from '../UI/ContactButton';
 
 const ServiceLanding = ({ openContact }) => {
