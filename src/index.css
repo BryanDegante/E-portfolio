@@ -849,6 +849,7 @@ a {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   gap: 40px;
   padding: 60px 0;
 }
@@ -870,7 +871,9 @@ a {
   padding: 20px 40px;
   position: relative;
   border-radius: 20px;
-  transition: all ease 300ms;
+
+  /* Let GSAP control transform/opacity */
+  transition: background 300ms ease, box-shadow 300ms ease;
 }
 
 .tier__Card::before {
@@ -930,6 +933,8 @@ a {
   max-height: 0;
   overflow: hidden;
   gap: 20px;
+  padding: 0 20px;
+  transition: max-height 0.5s ease, padding 0.5s ease;
 }
 
 .tier__Card.active .tier__description {
@@ -960,7 +965,6 @@ a {
 }
 
 .tier__Card.active .tier__button {
-  transform: scale(1.5) rotateZ(135deg);
   color: var(--primary);
 }
 
