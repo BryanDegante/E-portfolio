@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import {  useRef } from 'react';
 import SocialButton from '../UI/SocialButton';
-import { FaGithub, FaLinkedin, FaRegFilePdf } from 'react-icons/fa';
+import { FaEnvelope, FaGithub, FaLinkedin, FaRegFilePdf } from 'react-icons/fa';
 import Particles from '../UI/Particles';
+import ContactButton from '../UI/ContactButton';
 
-const Landing = () => {
+const Landing = ({ openContact }) => {
+	const contactButtonRef = useRef(null);
 	return (
 		<section id="Landing">
 			<Particles />
@@ -47,6 +49,14 @@ const Landing = () => {
 								icon={<FaRegFilePdf className="social__icon" />}
 								link="/Resume.pdf"
 								newPage={true}
+							/>
+						</li>
+						<li>
+							<ContactButton
+								ref={contactButtonRef}
+								text="Contact"
+								icon={<FaEnvelope className="social__icon" />}
+								onClick={() => openContact(contactButtonRef)}
 							/>
 						</li>
 					</ul>

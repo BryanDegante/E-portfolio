@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import { FaGithub, FaLinkedin, FaArrowUp, FaRegFilePdf } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaArrowUp, FaRegFilePdf, FaEnvelope } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SocialButton from './UI/SocialButton';
+import ContactButton from './UI/ContactButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Footer = () => {
+const Footer = ({ openContact }) => {
 	const footerRef = useRef(null);
-
+	const contactButtonRef = useRef(null);
 	useEffect(() => {
 		const el = footerRef.current;
 
@@ -62,6 +63,12 @@ const Footer = () => {
 								link="/Resume.pdf"
 								newPage={true}
 							/>
+							<ContactButton
+								ref={contactButtonRef}
+								text="Contact"
+								icon={<FaEnvelope className="social__icon" />}
+								onClick={() => openContact(contactButtonRef)}
+							/>
 						</div>
 					</div>
 
@@ -90,12 +97,7 @@ const Footer = () => {
 						>
 							Projects
 						</a>
-						<a
-							className="link__hover--effect text__color--muted"
-							href="#Contact"
-						>
-							Contact
-						</a>
+						
 					</div>
 				</div>
 

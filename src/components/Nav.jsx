@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import logo from '../assets/ClearLogo.png';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
-import ContactModal from './UI/ContactModal';
 import NavModal from './UI/NavModal';
 import { useLocation } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({ openContact }) => {
 	const [active, setActive] = useState('Home');
-	const [isContactOpen, setIsContactOpen] = useState(false);
+
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const location = useLocation();
 
@@ -98,7 +97,7 @@ const Nav = () => {
 					{
 						id: 'Contact',
 						isModal: true,
-						onClick: () => setIsContactOpen(true),
+						onClick: () => openContact(contactBtnRef),
 					},
 				]
 			: [
@@ -108,7 +107,7 @@ const Nav = () => {
 					{
 						id: 'Contact',
 						isModal: true,
-						onClick: () => setIsContactOpen(true),
+						onClick: () => openContact(contactBtnRef),
 					},
 				];
 
@@ -130,7 +129,7 @@ const Nav = () => {
 											ref={contactBtnRef}
 											onClick={() => {
 												setActive('Contact');
-												setIsContactOpen(true);
+												openContact(contactBtnRef);
 											}}
 											className={`link__hover--effect ${
 												active === link.id
@@ -169,12 +168,6 @@ const Nav = () => {
 					</div>
 				</nav>
 			</div>
-
-			<ContactModal
-				isOpen={isContactOpen}
-				onClose={() => setIsContactOpen(false)}
-				triggerRef={contactBtnRef}
-			/>
 
 			<NavModal
 				isOpen={isMobileMenuOpen}

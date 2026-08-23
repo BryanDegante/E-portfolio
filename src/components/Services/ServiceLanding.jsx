@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import SocialButton from '../UI/SocialButton';
 import { FaSearchDollar, FaEnvelope } from 'react-icons/fa';
 import gsap from 'gsap';
 import Particles from '../UI/Particles';
+import ContactButton from '../UI/ContactButton';
 
-const ServiceLanding = () => {
+const ServiceLanding = ({ openContact }) => {
+	const contactButtonRef = useRef(null);
+
 	return (
 		<section id="Landing">
 			<div className="row">
@@ -32,10 +35,11 @@ const ServiceLanding = () => {
 							/>
 						</li>
 						<li>
-							<SocialButton
+							<ContactButton
+								ref={contactButtonRef}
 								text="Contact"
 								icon={<FaEnvelope className="social__icon" />}
-								link="https://github.com/BryanDegante"
+								onClick={() => openContact(contactButtonRef)}
 							/>
 						</li>
 					</ul>

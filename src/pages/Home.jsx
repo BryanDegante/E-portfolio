@@ -5,10 +5,10 @@ import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
-const Home = () => {
+const Home = ({ openContact }) => {
 	return (
 		<main>
-			<Landing />
+			<Landing openContact={openContact} />
 			<About />
 			<Projects />
 			<Contact />
