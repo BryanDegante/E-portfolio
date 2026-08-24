@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-const Particles = ({ particleCount = 300, color = 0x60a5fa }) => {
+const Particles = ({ particleCount , color }) => {
 	const mountRef = useRef();
 
 	useEffect(() => {

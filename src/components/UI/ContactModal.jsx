@@ -50,7 +50,7 @@ const ContactModal = ({ isOpen, onClose, triggerRef }) => {
 		return () => {
 			document.body.style.overflow = 'auto';
 		};
-	}, [isOpen]);
+	}, [isOpen,triggerRef]);
 
 	useEffect(() => {
 		const handleEsc = (e) => {

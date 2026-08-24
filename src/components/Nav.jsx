@@ -2,171 +2,181 @@ import React, { useState, useEffect, useRef } from 'react';
 import logo from '../assets/ClearLogo.png';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
-import ContactModal from './UI/ContactModal';
 import NavModal from './UI/NavModal';
-import { HashLink } from 'react-router-hash-link';
+import { useLocation } from 'react-router-dom';
 
-const Nav = () => {
-  const [active, setActive] = useState('Home');
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const Nav = ({ openContact }) => {
+	const [active, setActive] = useState('Home');
 
-  const navContainerRef = useRef(null);
-  const contactBtnRef = useRef(null);
-  const hamburgerRef = useRef(null);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const location = useLocation();
 
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const { y: currentScrollY } = useWindowScroll();
+	const navContainerRef = useRef(null);
+	const contactBtnRef = useRef(null);
+	const hamburgerRef = useRef(null);
 
-  useEffect(() => {
-    if (!navContainerRef.current) return;
+	const [lastScrollY, setLastScrollY] = useState(0);
+	const [isNavVisible, setIsNavVisible] = useState(true);
+	const { y: currentScrollY } = useWindowScroll();
 
-    if (currentScrollY === 0) {
-      setIsNavVisible(true);
-      navContainerRef.current.classList.remove('floating-nav');
-    } else if (currentScrollY > lastScrollY) {
-      setIsNavVisible(false);
-      navContainerRef.current.classList.add('floating-nav');
-    } else {
-      setIsNavVisible(true);
-      navContainerRef.current.classList.add('floating-nav');
-    }
+	useEffect(() => {
+		if (!navContainerRef.current) return;
 
-    setLastScrollY(currentScrollY);
-  }, [currentScrollY]);
+		if (currentScrollY === 0) {
+			setIsNavVisible(true);
+			navContainerRef.current.classList.remove('floating-nav');
+		} else if (currentScrollY > lastScrollY) {
+			setIsNavVisible(false);
+			navContainerRef.current.classList.add('floating-nav');
+		} else {
+			setIsNavVisible(true);
+			navContainerRef.current.classList.add('floating-nav');
+		}
 
-  useEffect(() => {
-    if (!navContainerRef.current) return;
+		setLastScrollY(currentScrollY);
+	}, [currentScrollY]);
 
-    gsap.to(navContainerRef.current, {
-      y: isNavVisible ? 0 : -120,
-      opacity: isNavVisible ? 1 : 0,
-      duration: 0.25,
-      ease: 'power2.out',
-      pointerEvents: isNavVisible ? 'auto' : 'none',
-    });
-  }, [isNavVisible]);
+	useEffect(() => {
+		if (!navContainerRef.current) return;
 
-  useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
+		gsap.to(navContainerRef.current, {
+			y: isNavVisible ? 0 : -120,
+			opacity: isNavVisible ? 1 : 0,
+			duration: 0.25,
+			ease: 'power2.out',
+			pointerEvents: isNavVisible ? 'auto' : 'none',
+		});
+	}, [isNavVisible]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
+	useEffect(() => {
+		const sections = document.querySelectorAll('section[id]');
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setActive(entry.target.id);
+					}
+				});
+			},
+			{ threshold: 0.3 },
+		);
 
-  useEffect(() => {
-    if (!hamburgerRef.current) return;
+		sections.forEach((section) => observer.observe(section));
+		return () => observer.disconnect();
+	}, []);
 
-    const lines = hamburgerRef.current.querySelectorAll('span');
+	useEffect(() => {
+		if (!hamburgerRef.current) return;
 
-    gsap.to(lines[0], {
-      rotate: isMobileMenuOpen ? 45 : 0,
-      y: isMobileMenuOpen ? 6 : 0,
-      duration: 0.25,
-    });
+		const lines = hamburgerRef.current.querySelectorAll('span');
 
-    gsap.to(lines[1], {
-      opacity: isMobileMenuOpen ? 0 : 1,
-      duration: 0.2,
-    });
+		gsap.to(lines[0], {
+			rotate: isMobileMenuOpen ? 45 : 0,
+			y: isMobileMenuOpen ? 6 : 0,
+			duration: 0.25,
+		});
 
-    gsap.to(lines[2], {
-      rotate: isMobileMenuOpen ? -45 : 0,
-      y: isMobileMenuOpen ? -6 : 0,
-      duration: 0.25,
-    });
-  }, [isMobileMenuOpen]);
+		gsap.to(lines[1], {
+			opacity: isMobileMenuOpen ? 0 : 1,
+			duration: 0.2,
+		});
 
-  const links = [
-    { id: 'Home', href: '/' },
-    { id: 'About', href: '/#About' },
-    { id: 'Services', href: '/services' },
-    { id: 'Projects', href: '/#Projects' },
-    {
-      id: 'Contact',
-      isModal: true,
-      onClick: () => setIsContactOpen(true),
-    },
-  ];
+		gsap.to(lines[2], {
+			rotate: isMobileMenuOpen ? -45 : 0,
+			y: isMobileMenuOpen ? -6 : 0,
+			duration: 0.25,
+		});
+	}, [isMobileMenuOpen]);
 
-  return (
-    <>
-      <div ref={navContainerRef} className='nav-Container'>
-        <nav className='glass-nav'>
-          <div className='nav-content'>
-            <div className='logo'>
-              <img src={logo} alt='Logo' />
-            </div>
+	const links =
+		location.pathname === '/services'
+			? [
+					{ id: 'Home', href: '/' },
+					{ id: 'Tiers', href: '#Tiers' },
+					{
+						id: 'Contact',
+						isModal: true,
+						onClick: () => openContact(contactBtnRef),
+					},
+				]
+			: [
+					{ id: 'Services', href: '/services' },
+					{ id: 'About', href: '#About' },
+					{ id: 'Projects', href: '#Projects' },
+					{
+						id: 'Contact',
+						isModal: true,
+						onClick: () => openContact(contactBtnRef),
+					},
+				];
 
-            {/* DESKTOP LINKS */}
-            <ul className='nav-links'>
-              {links.map((link) => (
-                <li key={link.id}>
-                  {link.isModal ? (
-                    <button
-                      ref={contactBtnRef}
-                      onClick={() => {
-                        setActive('Contact');
-                        setIsContactOpen(true);
-                      }}
-                      className={`link__hover--effect ${
-                        active === link.id ? 'active-link' : ''
-                      }`}>
-                      {link.id}
-                    </button>
-                  ) : (
-                    <HashLink
-                      smooth
-                      to={link.href}
-                      className={`link__hover--effect ${
-                        active === link.id ? 'active-link' : ''
-                      }`}>
-                      {link.id}
-                    </HashLink>
-                  )}
-                </li>
-              ))}
-            </ul>
+	return (
+		<>
+			<div ref={navContainerRef} className="nav-Container">
+				<nav className="glass-nav">
+					<div className="nav-content">
+						<div className="logo">
+							<img src={logo} alt="Logo" />
+						</div>
 
-            {/* HAMBURGER */}
-            <div
-              ref={hamburgerRef}
-              className='hamburger'
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-        </nav>
-      </div>
+						{/* DESKTOP LINKS */}
+						<ul className="nav-links">
+							{links.map((link) => (
+								<li key={link.id}>
+									{link.isModal ? (
+										<button
+											ref={contactBtnRef}
+											onClick={() => {
+												setActive('Contact');
+												openContact(contactBtnRef);
+											}}
+											className={`link__hover--effect ${
+												active === link.id
+													? 'active-link'
+													: ''
+											}`}
+										>
+											{link.id}
+										</button>
+									) : (
+										<a
+											href={link.href}
+											className={`link__hover--effect ${
+												active === link.id
+													? 'active-link'
+													: ''
+											}`}
+										>
+											{link.id}
+										</a>
+									)}
+								</li>
+							))}
+						</ul>
 
-      <ContactModal
-        isOpen={isContactOpen}
-        onClose={() => setIsContactOpen(false)}
-        triggerRef={contactBtnRef}
-      />
+						{/* HAMBURGER */}
+						<div
+							ref={hamburgerRef}
+							className="hamburger"
+							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+						>
+							<span />
+							<span />
+							<span />
+						</div>
+					</div>
+				</nav>
+			</div>
 
-      <NavModal
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        links={links}
-        setActive={setActive}
-      />
-    </>
-  );
+			<NavModal
+				isOpen={isMobileMenuOpen}
+				onClose={() => setIsMobileMenuOpen(false)}
+				links={links}
+				setActive={setActive}
+			/>
+		</>
+	);
 };
 
 export default Nav;

@@ -80,7 +80,7 @@ const ContactModalContent = () => {
 			onMouseMove={handleMouseMove}
 			className="modal__content"
 		>
-			<h2 className="contact__title">Let’s Work Together</h2>
+			<h2 className="contact__title text__color--blue">Let’s Work Together</h2>
 
 			<form ref={formRef} onSubmit={sendEmail} className="contact__form">
 				{sent && <div className="success__message">Sent ✓</div>}

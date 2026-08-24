@@ -1,20 +1,26 @@
 import React from 'react';
 
-const SocialButton = ({ text, icon, link }) => {
+const SocialButton = ({ text, icon, link , newPage}) => {
 	return (
-		<button className="social__button">
-			<a href={link} target="_blank" className="sign">
+		<a
+			href={link}
+			target={newPage ? '_blank' : undefined}
+			className="social__button"
+			rel={newPage ? 'noopener noreferrer' : undefined}
+		>
+			<span
+				className="sign"
+				rel={newPage ? 'noopener noreferrer' : undefined}
+			>
 				{icon}
-			</a>
-			<a
+			</span>
+			<span
 				href={link}
-				target="_blank"
 				className="text"
-				rel="noopener noreferrer"
 			>
 				{text}
-			</a>
-		</button>
+			</span>
+		</a>
 	);
 };
 
