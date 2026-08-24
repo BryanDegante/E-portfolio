@@ -1,32 +1,129 @@
-import {  useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import SocialButton from '../UI/SocialButton';
 import { FaEnvelope, FaGithub, FaLinkedin, FaRegFilePdf } from 'react-icons/fa';
-import Particles from '../UI/Particles';
 import ContactButton from '../UI/ContactButton';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(SplitText);
 
 const Landing = ({ openContact }) => {
+	const landingRef = useRef(null);
+	const textRef = useRef(null);
+	const buttonsRef = useRef(null);
 	const contactButtonRef = useRef(null);
-	return (
-		<section id="Landing">
-			<Particles />
 
+	useEffect(() => {
+		const ctx = gsap.context(() => {
+			const heading = textRef.current.querySelector('h1');
+			const subheading = textRef.current.querySelector('h2');
+			const description = textRef.current.querySelector('h3');
+			const buttons = buttonsRef.current.querySelectorAll('li');
+
+			const headingSplit = new SplitText(heading, {
+				type: 'words',
+			});
+
+			const subheadingSplit = new SplitText(subheading, {
+				type: 'words',
+			});
+
+			const descriptionSplit = new SplitText(description, {
+				type: 'words',
+			});
+
+			gsap.set([headingSplit.words, subheadingSplit.words], {
+				y: 35,
+				opacity: 0,
+			});
+
+			gsap.set(descriptionSplit.words, {
+				y: 20,
+				opacity: 0,
+			});
+
+			gsap.set(buttons, {
+				y: 20,
+				opacity: 0,
+			});
+
+			const tl = gsap.timeline({
+				defaults: {
+					ease: 'power3.out',
+				},
+			});
+
+			tl.to(headingSplit.words, {
+				y: 0,
+				opacity: 1,
+				duration: 0.7,
+				stagger: 0.08,
+			})
+
+				.to(
+					subheadingSplit.words,
+					{
+						y: 0,
+						opacity: 1,
+						duration: 0.65,
+						stagger: 0.05,
+					},
+					'-=0.35',
+				)
+
+				.to(
+					descriptionSplit.words,
+					{
+						y: 0,
+						opacity: 1,
+						duration: 0.5,
+						stagger: 0.03,
+					},
+					'-=0.2',
+				)
+
+				.to(
+					buttons,
+					{
+						y: 0,
+						opacity: 1,
+						duration: 0.6,
+						stagger: 0.12,
+					},
+					'-=0.15',
+				);
+
+			return () => {
+				headingSplit.revert();
+				subheadingSplit.revert();
+				descriptionSplit.revert();
+			};
+		}, landingRef);
+
+		return () => ctx.revert();
+	}, []);
+
+	return (
+		<section id="Landing" ref={landingRef}>
 			<div className="row">
 				<div className="landing__container">
-					<div className="landing__container--text">
+					<div ref={textRef} className="landing__container--text">
 						<h1 className="text__color--normal">
 							I'm Bryan Degante
 						</h1>
+
 						<h2 className="text__color--normal">
-							A Frontend Developer <br /> Focused on clean UI &
-							Smooth Animations
+							A Frontend Developer <br />
+							Focused on clean UI & Smooth Animations
 						</h2>
+
 						<h3 className="text__color--normal">
 							Building responsive interfaces with modern web
 							technologies.
 						</h3>
 					</div>
 
-					<ul className="social__container">
+					<ul ref={buttonsRef} className="social__container">
 						<li>
 							<SocialButton
 								text="Github"
@@ -35,6 +132,7 @@ const Landing = ({ openContact }) => {
 								newPage={true}
 							/>
 						</li>
+
 						<li>
 							<SocialButton
 								text="LinkedIn"
@@ -43,6 +141,7 @@ const Landing = ({ openContact }) => {
 								newPage={true}
 							/>
 						</li>
+
 						<li>
 							<SocialButton
 								text="Resume"
@@ -51,6 +150,7 @@ const Landing = ({ openContact }) => {
 								newPage={true}
 							/>
 						</li>
+
 						<li>
 							<ContactButton
 								ref={contactButtonRef}

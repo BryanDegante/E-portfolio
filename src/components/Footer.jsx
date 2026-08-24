@@ -75,22 +75,17 @@ const Footer = ({ openContact }) => {
 					<div className="footer__right">
 						<a
 							className="link__hover--effect text__color--muted"
-							href="#Landing"
+							href="/"
 						>
 							Home
 						</a>
 						<a
 							className="link__hover--effect text__color--muted"
-							href="#About"
-						>
-							About
-						</a>
-						<a
-							className="link__hover--effect text__color--muted"
-							href="/Services"
+							href="/services"
 						>
 							Services
 						</a>
+						
 						<a
 							className="link__hover--effect text__color--muted"
 							href="#Projects"

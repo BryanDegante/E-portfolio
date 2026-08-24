@@ -19,7 +19,7 @@ function App() {
 	return (
 		<div className="App" style={{ position: 'relative' }}>
 			<div className="scroll__progress" />
-			<Particles particleCount={500} color={0x60a5fa} />
+			<Particles particleCount={700} color={0x60a5fa} />
 
 			<Router>
 				<div style={{ position: 'relative', zIndex: 1 }}>

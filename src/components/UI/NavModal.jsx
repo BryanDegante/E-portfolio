@@ -58,6 +58,7 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 										link.onClick?.();
 										onClose();
 									}}
+									className="link__hover--effect "
 								>
 									{link.id}
 								</button>
@@ -68,6 +69,7 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 										setActive(link.id);
 										onClose();
 									}}
+									className="link__hover--effect "
 								>
 									{link.id}
 								</a>

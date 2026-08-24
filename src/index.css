@@ -357,29 +357,6 @@ a {
   transition: 0.2s;
 }
 
-.navModal-item a::after,
-.navModal-item button::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 1px;
-  background: white;
-  transition: 0.3s ease;
-}
-
-.navModal-item a:hover::after,
-.navModal-item button:hover::after {
-  width: 100%;
-}
-
-.navModal-item a:hover,
-.navModal-item button:hover {
-  opacity: 0.7;
-  transform: translateX(4px);
-}
-
 .navModal-footer {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.4);
@@ -431,6 +408,7 @@ a {
 
 .social__container {
   display: flex;
+  list-style-type: none;
 }
 
 .social__button {
@@ -873,7 +851,15 @@ a {
   border-radius: 20px;
 
   /* Let GSAP control transform/opacity */
-  transition: background 300ms ease, box-shadow 300ms ease;
+  transition:
+      background 300ms ease,
+      box-shadow 300ms ease;
+}
+
+.tier__Card:hover {
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.15),
+    0 0 50px rgba(59, 130, 246, 0.08);
 }
 
 .tier__Card::before {
@@ -904,6 +890,12 @@ a {
       #7c44ff,
       #44d3ff,
       transparent);
+}
+
+.tier__Card.active {
+  box-shadow:
+    0 0 25px rgba(124, 68, 255, 0.18),
+    0 0 60px rgba(68, 211, 255, 0.08);
 }
 
 .tier__wrapper {
@@ -944,6 +936,7 @@ a {
 
 .tier__list {
   display: flex;
+  list-style: square;
   flex-direction: column;
   gap: 15px
 }
@@ -1001,6 +994,15 @@ a {
   padding: 20px;
   display: flex;
   flex-direction: column;
+    transition:
+        background 300ms ease,
+        box-shadow 300ms ease;
+}
+
+.addOn__card:hover {
+  box-shadow:
+    0 0 18px rgba(59, 130, 246, 0.12),
+    0 0 40px rgba(59, 130, 246, 0.06);
 }
 
 .addOn__card::before {
@@ -1047,7 +1049,7 @@ a {
     radial-gradient(circle at 20% 20%,
       rgba(59, 130, 246, 0.12),
       transparent 40%),
-    #020617;
+    #02061756;
   position: relative;
   overflow: hidden;
 }
@@ -1358,7 +1360,6 @@ a {
 
 #Footer {
   position: relative;
-  padding: 140px 0 60px;
   overflow: hidden;
   border-top: 1px solid rgba(59, 130, 246, 0.15);
 }
@@ -1420,6 +1421,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: center;
   gap: 16px;
 }
 
