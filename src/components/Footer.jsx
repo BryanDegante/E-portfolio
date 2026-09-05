@@ -57,12 +57,12 @@ const Footer = ({ openContact }) => {
 								link="https://www.linkedin.com/in/bryandegante-dev/"
 								newPage={true}
 							/>
-							<SocialButton
+							{/* <SocialButton
 								text="Resume"
 								icon={<FaRegFilePdf className="social__icon" />}
 								link="/Resume.pdf"
 								newPage={true}
-							/>
+							/> */}
 							<ContactButton
 								ref={contactButtonRef}
 								text="Contact"

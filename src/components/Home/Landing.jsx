@@ -141,7 +141,7 @@ const Landing = ({ openContact }) => {
 								newPage={true}
 							/>
 						</li>
-
+{/* 
 						<li>
 							<SocialButton
 								text="Resume"
@@ -149,7 +149,7 @@ const Landing = ({ openContact }) => {
 								link="/Resume.pdf"
 								newPage={true}
 							/>
-						</li>
+						</li> */}
 
 						<li>
 							<ContactButton
