@@ -10,16 +10,19 @@ const TierCard = ({
 	best,
 	selectTier,
 	isActive,
+	examples,
 }) => {
 	const activeTier = title === isActive;
 
 	const listRef = useRef(null);
 	const bestRef = useRef(null);
+	const examplesRef = useRef(null);
 	const iconRef = useRef(null);
 
 	useEffect(() => {
 		const listItems = listRef.current.children;
 		const bestText = bestRef.current;
+		const examplesContent = examplesRef.current;
 		const icon = iconRef.current;
 
 		if (activeTier) {
@@ -29,6 +32,11 @@ const TierCard = ({
 			});
 
 			gsap.set(bestText, {
+				y: 10,
+				opacity: 0,
+			});
+
+			gsap.set(examplesContent, {
 				y: 10,
 				opacity: 0,
 			});
@@ -50,6 +58,14 @@ const TierCard = ({
 				ease: 'power2.out',
 			});
 
+			gsap.to(examplesContent, {
+				y: 0,
+				opacity: 1,
+				duration: 0.4,
+				delay: 0.7,
+				ease: 'power2.out',
+			});
+
 			gsap.to(icon, {
 				rotation: 45,
 				duration: 0.3,
@@ -66,6 +82,11 @@ const TierCard = ({
 				opacity: 0,
 			});
 
+			gsap.set(examplesContent, {
+				y: 10,
+				opacity: 0,
+			});
+
 			gsap.to(icon, {
 				rotation: 0,
 				duration: 0.3,
@@ -74,14 +95,22 @@ const TierCard = ({
 		}
 
 		return () => {
-			gsap.killTweensOf([listItems, bestText, icon]);
+			gsap.killTweensOf([
+				listItems,
+				bestText,
+				examplesContent,
+				icon,
+			]);
 		};
 	}, [activeTier]);
 
 	return (
 		<div className={`tier__Card ${activeTier ? 'active' : ''}`}>
-			<div className="tier__wrapper">
-				<div className="tier__header">
+			<button
+				className="tier__header"
+				onClick={() => selectTier(title)}
+			>
+				<div className="tier__wrapper">
 					<div className="tier__title">
 						<span className="text__color--purple">
 							{title} | ${price}
@@ -91,24 +120,51 @@ const TierCard = ({
 					<p className="text__color--normal">{subtitle}</p>
 				</div>
 
-				<div className="tier__description">
-					<ul ref={listRef} className="tier__list text__color--muted">
-						{list.map((e, index) => (
-							<li className="text__color--blue" key={index}>
-								{e}
-							</li>
-						))}
-					</ul>
+				<FaPlus ref={iconRef} className="tier__icon" />
+			</button>
 
-					<p ref={bestRef} className="text__color--muted">
-						{best}
-					</p>
+			<div className="tier__description">
+				<ul
+					ref={listRef}
+					className="tier__list text__color--muted"
+				>
+					{list.map((e, index) => (
+						<li
+							className="text__color--blue"
+							key={index}
+						>
+							{e}
+						</li>
+					))}
+				</ul>
+
+				<p
+					ref={bestRef}
+					className="text__color--muted"
+				>
+					{best}
+				</p>
+
+				<div
+					ref={examplesRef}
+					className="tier__examples"
+				>
+					<p>Example Websites</p>
+
+					<div className="tier__example-links">
+						{examples.map((example) => (
+							<a
+								key={example.name}
+								href={example.url}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{example.name}
+							</a>
+						))}
+					</div>
 				</div>
 			</div>
-
-			<button className="tier__button" onClick={() => selectTier(title)}>
-				<FaPlus ref={iconRef} />
-			</button>
 		</div>
 	);
 };

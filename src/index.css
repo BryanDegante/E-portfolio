@@ -203,6 +203,63 @@ a {
   background: linear-gradient(180deg, #2563eb, #0891b2);
 }
 
+/* Privacy */
+
+.privacy {
+  min-height: 100vh;
+  padding: 140px 0 100px;
+  background: var(--section);
+}
+
+.privacy__section {
+  width: 100%;
+}
+
+.privacy__container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.privacy__container h1 {
+  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.privacy__container>p:first-of-type {
+  margin-bottom: 50px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.privacy__container h2 {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.privacy__container p {
+  margin-bottom: 18px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.privacy__container ul {
+  margin: 0 0 25px 25px;
+  padding: 0;
+}
+
+.privacy__container li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
 /* #region NAV */
 .nav-Container {
   width: 100%;
@@ -839,21 +896,17 @@ a {
   gap: 30px;
 }
 
-.tier__Card {
-  max-width: 750px;
-  width: 100%;
-  display: flex;
-  background: var(--card);
-  justify-content: center;
-  align-items: center;
-  padding: 20px 40px;
-  position: relative;
-  border-radius: 20px;
+/* Card */
 
-  /* Let GSAP control transform/opacity */
+.tier__Card {
+  position: relative;
+  width: min(750px, 100%);
+  background: var(--card);
+  border-radius: 20px;
+  overflow: hidden;
   transition:
-    background 300ms ease,
-    box-shadow 300ms ease;
+    box-shadow 300ms ease,
+    transform 300ms ease;
 }
 
 .tier__Card:hover {
@@ -862,22 +915,26 @@ a {
     0 0 50px rgba(59, 130, 246, 0.08);
 }
 
+/* Animated border */
 .tier__Card::before {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: 20px;
   padding: 2px;
+
   background-image: linear-gradient(120deg,
       transparent,
       rgb(59, 131, 246),
       transparent);
+
   background-size: 200% 200%;
   animation: borderFlow 6s linear infinite;
 
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
+
   mask-composite: exclude;
 
   opacity: 0.6;
@@ -892,79 +949,167 @@ a {
       transparent);
 }
 
+/* Active glow */
+
 .tier__Card.active {
   box-shadow:
     0 0 25px rgba(124, 68, 255, 0.18),
     0 0 60px rgba(68, 211, 255, 0.08);
 }
 
-.tier__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-right: 20px;
-}
+/* Header button */
 
 .tier__header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  padding: 25px 30px;
+
+  border: none;
+  background: transparent;
+
+  font: inherit;
+  color: inherit;
+  text-align: left;
+
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Header content */
+
+.tier__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
+  min-width: 0;
 }
 
 .tier__title {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.tier__description {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  max-height: 0;
-  overflow: hidden;
-  gap: 20px;
-  padding: 0 20px;
-  transition: max-height 0.5s ease, padding 0.5s ease;
+.tier__title span {
+  font-weight: 600;
 }
 
-.tier__Card.active .tier__description {
-  max-height: 500px;
-  padding: 30px 20px;
+.tier__wrapper p {
+  margin: 0;
+  line-height: 1.6;
 }
 
-.tier__list {
-  display: flex;
-  list-style: square;
-  flex-direction: column;
-  gap: 15px
-}
+/* Plus */
 
-.tier__button {
-  position: absolute;
-  background: none;
-  cursor: pointer;
-  border: none;
-  right: 20px;
-  top: 20px;
+.tier__icon {
+  flex-shrink: 0;
   font-size: 16px;
   color: var(--text-muted);
-  transition: all ease 300ms;
+  transition: color 300ms ease;
 }
 
-.tier__button span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tier__button:hover {
+.tier__header:hover .tier__icon {
   color: var(--primary-hover);
 }
 
-.tier__Card.active .tier__button {
+.tier__Card.active .tier__icon {
   color: var(--primary);
+}
+
+/* Description */
+
+.tier__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  max-height: 0;
+  overflow: hidden;
+
+  padding: 0 30px;
+
+  transition:
+    max-height 500ms ease,
+    padding 500ms ease;
+}
+
+.tier__Card.active .tier__description {
+  max-height: 1000px;
+  padding: 0 30px 30px;
+}
+
+/* Included list */
+
+.tier__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin: 0;
+  padding-left: 20px;
+
+  list-style: square;
+}
+
+/* Best for */
+
+.tier__description>p {
+  width: 100%;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Example links */
+
+
+.tier__examples {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.tier__examples>p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.tier__example-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tier__example-links a {
+  padding: 8px 14px;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 8px;
+  color: var(--primary);
+  font-size: 13px;
+  text-decoration: none;
+  background: rgba(59, 130, 246, 0.05);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.tier__example-links a:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: var(--primary);
+  color: #60a5fa;
+  transform: translateY(-2px);
 }
 
 .addOns__wrapper {
@@ -1049,6 +1194,91 @@ a {
   font-size: 14px;
 }
 
+
+.faq {
+  width: min(90%, 900px);
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+.faq__text {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.faq__text h2 {
+  margin: 10px 0 15px;
+}
+
+.faq__text>p:last-child {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq__item {
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 10px;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 25px;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq__icon {
+  font-size: 1.5rem;
+  font-weight: 400;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq__item.active .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faq__answer p {
+  overflow: hidden;
+  margin: 0;
+  padding: 0 25px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.faq__item.active .faq__answer {
+  grid-template-rows: 1fr;
+}
+
+.faq__item.active .faq__answer p {
+  padding-bottom: 22px;
+}
 
 
 
@@ -1473,7 +1703,6 @@ a {
 
 /* #endregion Footer */
 
-
 @media (max-width: 1200px) {
   .container {
     padding: 80px 24px;
@@ -1550,17 +1779,14 @@ a {
 }
 
 @media (max-width: 900px) {
-
   /* Nav */
+
   .nav-content {
     padding: 14px 20px;
     border-radius: 16px;
   }
 
-  .nav-links {
-    gap: 18px;
-    font-size: 14px;
-  }
+
 
   .logo {
     width: 50px;
@@ -1580,6 +1806,7 @@ a {
   }
 
   /* Projects */
+
   .project__wrapper {
     flex-direction: column;
   }
@@ -1616,6 +1843,8 @@ a {
   .contact__form {
     padding: 36px 24px;
   }
+
+  /* Tiers */
 
   .tier__text {
     padding: 50px 20px;
@@ -1700,6 +1929,7 @@ a {
         rgba(0, 0, 0, 1) 10%,
         rgba(0, 0, 0, 1) 90%,
         rgba(0, 0, 0, 0) 100%);
+
     -webkit-mask-image: linear-gradient(to right,
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 1) 10%,
@@ -1772,23 +2002,34 @@ a {
     font-size: 14px;
   }
 
+  /* Tiers */
+
   .tier__text {
     padding: 40px 20px;
     gap: 30px;
   }
 
-  .tier__wrapper {
-    padding-right: 0;
-    padding: 0 20px;
-  }
-
   .tier__Card {
     max-width: 100%;
-    padding: 20px 30px;
+  }
+
+  .tier__header {
+    padding: 22px 25px;
+  }
+
+
+
+  .tier__description {
+    padding: 0 25px;
   }
 
   .tier__Card.active .tier__description {
-    padding: 25px 10px;
+    max-height: 2000px;
+    padding: 0 25px 25px;
+  }
+
+  .tier__list {
+    gap: 12px;
   }
 
   .addOn__wrapper {
@@ -1866,6 +2107,8 @@ a {
     align-items: center;
   }
 
+  /* Tiers */
+
   .tier__text {
     padding: 30px 15px;
     gap: 25px;
@@ -1875,12 +2118,7 @@ a {
     gap: 20px;
   }
 
-  .tier__wrapper {
-    padding: 0 15px;
-  }
-
   .tier__Card {
-    padding: 20px;
     border-radius: 15px;
   }
 
@@ -1890,24 +2128,45 @@ a {
 
   .tier__header {
     gap: 15px;
-    padding-right: 30px;
+    padding: 20px;
   }
+
+
+
+  .tier__wrapper {
+    gap: 8px;
+  }
+
+
 
   .tier__description {
     gap: 15px;
+    padding: 0 20px;
   }
 
-  .tier__Card.active .tier__description {
-    padding: 20px 5px;
-  }
+ 
 
   .tier__list {
-    gap: 12px;
+    gap: 10px;
+    padding-left: 18px;
   }
 
-  .tier__button {
-    right: 15px;
-    top: 20px;
+
+
+  .tier__examples>p {
+    font-size: 13px;
+  }
+
+  .tier__example-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .tier__example-links a {
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
   }
 
   .addOn__wrapper {
@@ -2093,37 +2352,64 @@ a {
     padding: 30px 20px;
   }
 
+  /* Tiers */
+
   .tier__text {
     padding: 25px 10px;
   }
 
-  .tier__wrapper {
-    padding: 0 10px;
-    gap: 20px;
-  }
-
   .tier__Card {
-    padding: 18px 15px;
+    padding: 0;
   }
 
   .tier__header {
-    padding-right: 35px;
+    gap: 10px;
+    padding: 18px 15px;
   }
 
   .tier__title {
     align-items: flex-start;
   }
 
-  .tier__Card.active .tier__description {
-    padding: 20px 0;
+  .tier__wrapper {
+    gap: 7px;
   }
 
-  .tier__button {
-    right: 12px;
-    top: 18px;
+  .tier__wrapper p {
+    line-height: 1.5;
   }
 
+  
 
+  .tier__description {
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .tier__list {
+    gap: 9px;
+    padding-left: 17px;
+  }
+
+  .tier__list li {
+    line-height: 1.5;
+  }
+
+  .tier__description>p {
+    line-height: 1.6;
+  }
+
+  .tier__examples>p {
+    font-size: 12px;
+  }
+
+  .tier__example-links a {
+    width: 100%;
+    max-width: 240px;
+    font-size: 12px;
+    padding: 8px 12px;
+    text-align: center;
+  }
 
   .addOn__wrapper {
     padding: 0 10px;
@@ -2135,6 +2421,7 @@ a {
 
   .disclaimer {
     font-size: 11px;
+    text-align: center;
   }
 
   #Footer {

@@ -111,6 +111,7 @@ const Tiers = () => {
 								price={tier.price}
 								list={tier.list}
 								best={tier.best}
+								examples={tier.examples}
 								selectTier={tierSelect}
 								isActive={activeTier}
 							/>

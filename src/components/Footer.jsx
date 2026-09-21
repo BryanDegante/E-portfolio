@@ -86,11 +86,17 @@ const Footer = ({ openContact }) => {
 							Services
 						</a>
 						
-						<a
+						{/* <a
 							className="link__hover--effect text__color--muted"
-							href="#Projects"
+							href="/projects"
 						>
 							Projects
+						</a> */}
+						<a
+							className="link__hover--effect text__color--muted"
+							href="/privacy"
+						>
+							Privacy Policy
 						</a>
 						
 					</div>

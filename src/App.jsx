@@ -6,6 +6,7 @@ import Services from './pages/Services';
 import ContactModal from './components/UI/ContactModal';
 import Footer from './components/Footer';
 import { useState } from 'react';
+import Privacy from './pages/Privacy';
 
 function App() {
 	const [isContactOpen, setIsContactOpen] = useState(false);
@@ -20,7 +21,6 @@ function App() {
 		<div className="App" style={{ position: 'relative' }}>
 			<div className="scroll__progress" />
 			<Particles particleCount={700} color={0x60a5fa} />
-
 			<Router>
 				<div style={{ position: 'relative', zIndex: 1 }}>
 					<Nav openContact={openContact} />
@@ -33,6 +33,10 @@ function App() {
 						<Route
 							path="/services"
 							element={<Services openContact={openContact} />}
+						/>
+						<Route
+							path="/privacy"
+							element={<Privacy openContact={openContact} />}
 						/>
 					</Routes>
 					<Footer openContact={openContact} />

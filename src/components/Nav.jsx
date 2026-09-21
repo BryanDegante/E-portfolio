@@ -88,12 +88,21 @@ const Nav = ({ openContact }) => {
 			duration: 0.25,
 		});
 	}, [isMobileMenuOpen]);
-
-	const links =
-		location.pathname === '/services'
+const links =
+	location.pathname === '/services'
+		? [
+				{ id: 'Home', href: '/' },
+				{ id: 'Tiers', href: '#Tiers' },
+				{
+					id: 'Contact',
+					isModal: true,
+					onClick: () => openContact(contactBtnRef),
+				},
+			]
+		: location.pathname === '/privacy'
 			? [
 					{ id: 'Home', href: '/' },
-					{ id: 'Tiers', href: '#Tiers' },
+					{ id: 'Services', href: '/services' },
 					{
 						id: 'Contact',
 						isModal: true,
@@ -120,7 +129,6 @@ const Nav = ({ openContact }) => {
 							<img src={logo} alt="Logo" />
 						</div>
 
-						{/* DESKTOP LINKS */}
 						<ul className="nav-links">
 							{links.map((link) => (
 								<li key={link.id}>
