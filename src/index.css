@@ -219,7 +219,7 @@ a {
 }
 
 .loading-logo {
-  width: 260px;
+  width: min(260px, 65vw);
   height: auto;
 
   overflow: visible;

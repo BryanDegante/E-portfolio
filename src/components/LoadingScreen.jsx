@@ -15,7 +15,6 @@ const LoadingScreen = ({onComplete}) => {
 			path.getTotalLength(),
 		);
 
-		// Initial state
 		gsap.set(paths, {
 			fillOpacity: 0,
 			visibility: 'visible',
@@ -29,7 +28,6 @@ const LoadingScreen = ({onComplete}) => {
 			opacity: 1,
 		});
 
-		// Draw logo
 		timeline.to(paths, {
 			strokeDashoffset: 0,
 			duration: 1.8,
@@ -37,7 +35,6 @@ const LoadingScreen = ({onComplete}) => {
 			stagger: 0.18,
 		});
 
-		// Fill logo
 		timeline.to(
 			paths,
 			{
@@ -49,7 +46,6 @@ const LoadingScreen = ({onComplete}) => {
 			'-=0.45',
 		);
 
-		// Return stroke to normal
 		timeline.to(
 			paths,
 			{
@@ -60,7 +56,6 @@ const LoadingScreen = ({onComplete}) => {
 			'-=0.25',
 		);
 
-		// Logo settles
 		timeline.to(
 			'.loading-logo',
 			{
@@ -71,7 +66,6 @@ const LoadingScreen = ({onComplete}) => {
 			'-=0.3',
 		);
 
-		// Hold logo
 		timeline.to(
 			{},
 			{
@@ -79,7 +73,6 @@ const LoadingScreen = ({onComplete}) => {
 			},
 		);
 
-		// FADE OUT
 	timeline.to('.loading-screen', {
 		opacity: 0,
 		duration: 1,
@@ -144,7 +137,6 @@ const LoadingScreen = ({onComplete}) => {
 					</filter>
 				</defs>
 
-				{/* YOUR EXISTING SVG PATHS GO HERE */}
 
 				<path
 					id="gold-ribbon"
