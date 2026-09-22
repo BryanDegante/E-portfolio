@@ -11,6 +11,7 @@ const TierCard = ({
 	selectTier,
 	isActive,
 	examples,
+	language,
 }) => {
 	const activeTier = title === isActive;
 
@@ -95,21 +96,13 @@ const TierCard = ({
 		}
 
 		return () => {
-			gsap.killTweensOf([
-				listItems,
-				bestText,
-				examplesContent,
-				icon,
-			]);
+			gsap.killTweensOf([listItems, bestText, examplesContent, icon]);
 		};
 	}, [activeTier]);
 
 	return (
 		<div className={`tier__Card ${activeTier ? 'active' : ''}`}>
-			<button
-				className="tier__header"
-				onClick={() => selectTier(title)}
-			>
+			<button className="tier__header" onClick={() => selectTier(title)}>
 				<div className="tier__wrapper">
 					<div className="tier__title">
 						<span className="text__color--purple">
@@ -124,32 +117,24 @@ const TierCard = ({
 			</button>
 
 			<div className="tier__description">
-				<ul
-					ref={listRef}
-					className="tier__list text__color--muted"
-				>
+				<ul ref={listRef} className="tier__list text__color--muted">
 					{list.map((e, index) => (
-						<li
-							className="text__color--blue"
-							key={index}
-						>
+						<li className="text__color--blue" key={index}>
 							{e}
 						</li>
 					))}
 				</ul>
 
-				<p
-					ref={bestRef}
-					className="text__color--muted"
-				>
+				<p ref={bestRef} className="text__color--muted">
 					{best}
 				</p>
 
-				<div
-					ref={examplesRef}
-					className="tier__examples"
-				>
-					<p>Example Websites</p>
+				<div ref={examplesRef} className="tier__examples">
+					<p>
+						{language === 'en'
+							? 'Example Websites'
+							: 'Sitios Web de Ejemplo'}
+					</p>
 
 					<div className="tier__example-links">
 						{examples.map((example) => (

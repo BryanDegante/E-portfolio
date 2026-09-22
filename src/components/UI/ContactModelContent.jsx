@@ -2,7 +2,7 @@ import emailjs from '@emailjs/browser';
 import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 
-const ContactModalContent = () => {
+const ContactModalContent = ({ language }) => {
 	const formRef = useRef();
 	const containerRef = useRef();
 	const btnRef = useRef();
@@ -70,7 +70,11 @@ const ContactModalContent = () => {
 			})
 			.catch(() => {
 				setLoading(false);
-				alert('Something went wrong.');
+				alert(
+					language === 'en'
+						? 'Something went wrong.'
+						: 'Algo salió mal.',
+				);
 			});
 	};
 
@@ -80,28 +84,54 @@ const ContactModalContent = () => {
 			onMouseMove={handleMouseMove}
 			className="modal__content"
 		>
-			<h2 className="contact__title text__color--blue">Let’s Work Together</h2>
+			<h2 className="contact__title text__color--blue">
+				{language === 'en'
+					? 'Let’s Work Together'
+					: 'Trabajemos Juntos'}
+			</h2>
 
 			<form ref={formRef} onSubmit={sendEmail} className="contact__form">
-				{sent && <div className="success__message">Sent ✓</div>}
+				{sent && (
+					<div className="success__message">
+						{language === 'en' ? 'Sent ✓' : 'Enviado ✓'}
+					</div>
+				)}
 
 				<div className="form__group">
 					<input name="user_name" placeholder=" " required />
-					<label>Name</label>
+					<label>{language === 'en' ? 'Name' : 'Nombre'}</label>
 				</div>
 
 				<div className="form__group">
-					<input name="user_email" placeholder=" " required />
-					<label>Email</label>
+					<input
+						name="user_email"
+						type="email"
+						placeholder=" "
+						required
+					/>
+					<label>
+						{language === 'en' ? 'Email' : 'Correo electrónico'}
+					</label>
 				</div>
 
 				<div className="form__group">
 					<textarea name="message" placeholder=" " required />
-					<label>Message</label>
+					<label>{language === 'en' ? 'Message' : 'Mensaje'}</label>
 				</div>
 
-				<button ref={btnRef} className="btn__primary">
-					{loading ? 'Sending...' : 'Send Message'}
+				<button
+					ref={btnRef}
+					type="submit"
+					className="btn__primary"
+					disabled={loading}
+				>
+					{loading
+						? language === 'en'
+							? 'Sending...'
+							: 'Enviando...'
+						: language === 'en'
+							? 'Send Message'
+							: 'Enviar mensaje'}
 				</button>
 			</form>
 		</div>

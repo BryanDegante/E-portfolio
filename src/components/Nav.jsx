@@ -4,6 +4,7 @@ import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 import NavModal from './UI/NavModal';
 import { useLocation } from 'react-router-dom';
+import ReactCountryFlag from 'react-country-flag';
 
 const Nav = ({ openContact, language, setLanguage }) => {
 	const [active, setActive] = useState('Home');
@@ -48,7 +49,6 @@ const Nav = ({ openContact, language, setLanguage }) => {
 		});
 	}, [isNavVisible]);
 
-	// Observe sections to update active nav link
 	useEffect(() => {
 		const sections = document.querySelectorAll('section[id]');
 
@@ -68,7 +68,6 @@ const Nav = ({ openContact, language, setLanguage }) => {
 		return () => observer.disconnect();
 	}, []);
 
-	// Hamburger animation
 	useEffect(() => {
 		if (!hamburgerRef.current) return;
 
@@ -233,6 +232,11 @@ const Nav = ({ openContact, language, setLanguage }) => {
 								className={language === 'en' ? 'active' : ''}
 								onClick={() => setLanguage('en')}
 							>
+								<ReactCountryFlag
+									countryCode="US"
+									svg
+									className="language__flag"
+								/>
 								EN
 							</button>
 
@@ -242,11 +246,15 @@ const Nav = ({ openContact, language, setLanguage }) => {
 								className={language === 'es' ? 'active' : ''}
 								onClick={() => setLanguage('es')}
 							>
+								<ReactCountryFlag
+									countryCode="MX"
+									svg
+									className="language__flag"
+								/>
 								ES
 							</button>
 						</div>
 
-						{/* HAMBURGER */}
 						<div
 							ref={hamburgerRef}
 							className="hamburger"

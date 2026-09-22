@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ContactModalContent from './ContactModelContent';
-const ContactModal = ({ isOpen, onClose, triggerRef }) => {
+
+const ContactModal = ({ isOpen, onClose, triggerRef, language }) => {
 	const overlayRef = useRef();
 	const modalRef = useRef();
 
@@ -50,13 +51,15 @@ const ContactModal = ({ isOpen, onClose, triggerRef }) => {
 		return () => {
 			document.body.style.overflow = 'auto';
 		};
-	}, [isOpen,triggerRef]);
+	}, [isOpen, triggerRef]);
 
 	useEffect(() => {
 		const handleEsc = (e) => {
 			if (e.key === 'Escape') onClose();
 		};
+
 		window.addEventListener('keydown', handleEsc);
+
 		return () => window.removeEventListener('keydown', handleEsc);
 	}, [onClose]);
 
@@ -73,7 +76,7 @@ const ContactModal = ({ isOpen, onClose, triggerRef }) => {
 					✕
 				</button>
 
-				<ContactModalContent />
+				<ContactModalContent language={language} />
 			</div>
 		</div>
 	);

@@ -7,12 +7,14 @@ import { ProjectData } from '../../data/ProjectData';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Projects = () => {
+const Projects = ({ language }) => {
 	const projectsRef = useRef([]);
 
 	useEffect(() => {
 		const ctx = gsap.context(() => {
 			projectsRef.current.forEach((el) => {
+				if (!el) return;
+
 				const left = el.querySelector('.project__left');
 				const right = el.querySelector('.project__right');
 				const image = el.querySelector('.project__card');
@@ -59,7 +61,9 @@ const Projects = () => {
 	return (
 		<section id="Projects">
 			<div className="container">
-				<h2 className="text__color--normal">PROJECTS</h2>
+				<h2 className="text__color--normal">
+					{language === 'en' ? 'PROJECTS' : 'PROYECTOS'}
+				</h2>
 
 				<div className="projects__layout">
 					{ProjectData.map((project, index) => (
@@ -78,8 +82,8 @@ const Projects = () => {
 
 							<div className="project__right">
 								<ProjectDescription
-									name={project.name}
-									description={project.description}
+									name={project.name[language]}
+									description={project.description[language]}
 								/>
 							</div>
 						</div>
