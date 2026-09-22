@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import NavModal from './UI/NavModal';
 import { useLocation } from 'react-router-dom';
 
-const Nav = ({ openContact }) => {
+const Nav = ({ openContact, language, setLanguage }) => {
 	const [active, setActive] = useState('Home');
 
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,6 +48,7 @@ const Nav = ({ openContact }) => {
 		});
 	}, [isNavVisible]);
 
+	// Observe sections to update active nav link
 	useEffect(() => {
 		const sections = document.querySelectorAll('section[id]');
 
@@ -63,9 +64,11 @@ const Nav = ({ openContact }) => {
 		);
 
 		sections.forEach((section) => observer.observe(section));
+
 		return () => observer.disconnect();
 	}, []);
 
+	// Hamburger animation
 	useEffect(() => {
 		if (!hamburgerRef.current) return;
 
@@ -88,37 +91,99 @@ const Nav = ({ openContact }) => {
 			duration: 0.25,
 		});
 	}, [isMobileMenuOpen]);
-const links =
-	location.pathname === '/services'
-		? [
-				{ id: 'Home', href: '/' },
-				{ id: 'Tiers', href: '#Tiers' },
-				{
-					id: 'Contact',
-					isModal: true,
-					onClick: () => openContact(contactBtnRef),
-				},
-			]
-		: location.pathname === '/privacy'
+
+	const links =
+		location.pathname === '/services'
 			? [
-					{ id: 'Home', href: '/' },
-					{ id: 'Services', href: '/services' },
+					{
+						id: 'Home',
+						label: {
+							en: 'Home',
+							es: 'Inicio',
+						},
+						href: '/',
+					},
+					{
+						id: 'Tiers',
+						label: {
+							en: 'Tiers',
+							es: 'Precios',
+						},
+						href: '#Tiers',
+					},
 					{
 						id: 'Contact',
+						label: {
+							en: 'Contact',
+							es: 'Contacto',
+						},
 						isModal: true,
 						onClick: () => openContact(contactBtnRef),
 					},
 				]
-			: [
-					{ id: 'Services', href: '/services' },
-					{ id: 'About', href: '#About' },
-					{ id: 'Projects', href: '#Projects' },
-					{
-						id: 'Contact',
-						isModal: true,
-						onClick: () => openContact(contactBtnRef),
-					},
-				];
+			: location.pathname === '/privacy'
+				? [
+						{
+							id: 'Home',
+							label: {
+								en: 'Home',
+								es: 'Inicio',
+							},
+							href: '/',
+						},
+						{
+							id: 'Services',
+							label: {
+								en: 'Services',
+								es: 'Servicios',
+							},
+							href: '/services',
+						},
+						{
+							id: 'Contact',
+							label: {
+								en: 'Contact',
+								es: 'Contacto',
+							},
+							isModal: true,
+							onClick: () => openContact(contactBtnRef),
+						},
+					]
+				: [
+						{
+							id: 'Services',
+							label: {
+								en: 'Services',
+								es: 'Servicios',
+							},
+							href: '/services',
+						},
+						{
+							id: 'About',
+							label: {
+								en: 'About',
+								es: 'Sobre mí',
+							},
+							href: '#About',
+						},
+						{
+							id: 'Projects',
+							label: {
+								en: 'Projects',
+								es: 'Proyectos',
+							},
+							href: '#Projects',
+						},
+						{
+							id: 'Contact',
+							label: {
+								en: 'Contact',
+								es: 'Contacto',
+							},
+							isModal: true,
+							onClick: () => openContact(contactBtnRef),
+						},
+					];
 
 	return (
 		<>
@@ -145,7 +210,7 @@ const links =
 													: ''
 											}`}
 										>
-											{link.id}
+											{link.label[language]}
 										</button>
 									) : (
 										<a
@@ -156,12 +221,30 @@ const links =
 													: ''
 											}`}
 										>
-											{link.id}
+											{link.label[language]}
 										</a>
 									)}
 								</li>
 							))}
 						</ul>
+
+						<div className="language-switcher">
+							<button
+								className={language === 'en' ? 'active' : ''}
+								onClick={() => setLanguage('en')}
+							>
+								EN
+							</button>
+
+							<span>/</span>
+
+							<button
+								className={language === 'es' ? 'active' : ''}
+								onClick={() => setLanguage('es')}
+							>
+								ES
+							</button>
+						</div>
 
 						{/* HAMBURGER */}
 						<div

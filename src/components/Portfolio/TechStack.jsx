@@ -6,7 +6,7 @@ import { techStack } from '../../data/techData';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TechStack = () => {
+const TechStack = ({language}) => {
 	const trackRef = useRef(null);
 
 	const loopStack = [...techStack, ...techStack];
@@ -77,7 +77,11 @@ const TechStack = () => {
 	return (
 		<section id="TechStack">
 			<div className="techstack__container">
-				<h2>Tech Stack</h2>
+				{language === 'en' ? (
+					<h2>Tech Stack</h2>
+				) : (
+					<h2>Stack Tecnológico</h2>
+				)}
 
 				<div className="techstack__marquee">
 					<div className="techstack__track" ref={trackRef}>
