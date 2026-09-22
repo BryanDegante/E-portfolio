@@ -7,10 +7,12 @@ import ContactModal from './components/UI/ContactModal';
 import Footer from './components/Footer';
 import { useState } from 'react';
 import Privacy from './pages/Privacy';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
 	const [isContactOpen, setIsContactOpen] = useState(false);
 	const [contactTrigger, setContactTrigger] = useState(null);
+	const [isLoaded, setIsLoaded] = useState(false);
 
 	const openContact = (triggerRef) => {
 		setContactTrigger(triggerRef);
@@ -20,7 +22,11 @@ function App() {
 	return (
 		<div className="App" style={{ position: 'relative' }}>
 			<div className="scroll__progress" />
+
+			<LoadingScreen onComplete={() => setIsLoaded(true)} />
+
 			<Particles particleCount={700} color={0x60a5fa} />
+
 			<Router>
 				<div style={{ position: 'relative', zIndex: 1 }}>
 					<Nav openContact={openContact} />
@@ -28,19 +34,28 @@ function App() {
 					<Routes>
 						<Route
 							path="/"
-							element={<Home openContact={openContact} />}
+							element={
+								<Home
+									openContact={openContact}
+									isLoaded={isLoaded}
+								/>
+							}
 						/>
+
 						<Route
 							path="/services"
 							element={<Services openContact={openContact} />}
 						/>
+
 						<Route
 							path="/privacy"
 							element={<Privacy openContact={openContact} />}
 						/>
 					</Routes>
+
 					<Footer openContact={openContact} />
 				</div>
+
 				<ContactModal
 					isOpen={isContactOpen}
 					onClose={() => setIsContactOpen(false)}

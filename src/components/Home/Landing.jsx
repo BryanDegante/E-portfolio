@@ -7,13 +7,14 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-const Landing = ({ openContact }) => {
+const Landing = ({ openContact,isLoaded }) => {
 	const landingRef = useRef(null);
 	const textRef = useRef(null);
 	const buttonsRef = useRef(null);
 	const contactButtonRef = useRef(null);
 
 	useEffect(() => {
+		if (!isLoaded) return;
 		const ctx = gsap.context(() => {
 			const heading = textRef.current.querySelector('h1');
 			const subheading = textRef.current.querySelector('h2');
@@ -101,7 +102,7 @@ const Landing = ({ openContact }) => {
 		}, landingRef);
 
 		return () => ctx.revert();
-	}, []);
+	}, [isLoaded]);
 
 	return (
 		<section id="Landing" ref={landingRef}>

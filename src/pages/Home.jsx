@@ -1,14 +1,12 @@
-import React from 'react';
 import Landing from '../components/Home/Landing';
 import About from '../components/Home/About';
 import Projects from '../components/Portfolio/Projects';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 
-const Home = ({ openContact }) => {
+const Home = ({ openContact, isLoaded }) => {
 	return (
 		<main>
-			<Landing openContact={openContact} />
+			<Landing openContact={openContact} isLoaded={isLoaded} />
 			<About />
 			<Projects />
 			<Contact />

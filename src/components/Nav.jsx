@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import logo from '../assets/ClearLogo.png';
+import logo from '../assets/logo.png';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 import NavModal from './UI/NavModal';
