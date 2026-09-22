@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Contact = () => {
+const Contact = ({language}) => {
 	const sectionRef = useRef();
 	const formRef = useRef();
 	const btnRef = useRef();
@@ -154,18 +154,37 @@ const Contact = () => {
 				<div className="contact__wrapper">
 					<div className="contact__left">
 						<h2 className="contact__title text__color--blue">
-							Let's Build Something Great
+							{language === 'en'
+								? "Let's Build Something Great"
+								: 'Construyamos Algo Increíble'}
 						</h2>
+
 						<p>
-							Currently available for{' '}
-							<span className="text__color--purple">
-								Freelance
-							</span>{' '}
-							and{' '}
-							<span className="text__color--purple">
-								Full-time opportunities
-							</span>
-							. Let's create something that stands out.
+							{language === 'en' ? (
+								<>
+									Currently available for{' '}
+									<span className="text__color--purple">
+										Freelance
+									</span>{' '}
+									and{' '}
+									<span className="text__color--purple">
+										Full-time opportunities
+									</span>
+									. Let's create something that stands out.
+								</>
+							) : (
+								<>
+									Actualmente estoy disponible para{' '}
+									<span className="text__color--purple">
+										trabajos freelance
+									</span>{' '}
+									y{' '}
+									<span className="text__color--purple">
+										oportunidades de tiempo completo
+									</span>
+									. Creemos algo que destaque.
+								</>
+							)}
 						</p>
 					</div>
 
@@ -177,13 +196,17 @@ const Contact = () => {
 						{sent && (
 							<div className="success__message">
 								<div className="checkmark" />
-								Message Sent Successfully
+								{language === 'en'
+									? 'Message Sent Successfully'
+									: 'Mensaje enviado correctamente'}
 							</div>
 						)}
 
 						<div className="form__group">
 							<input name="user_name" placeholder=" " required />
-							<label>Name</label>
+							<label>
+								{language === 'en' ? 'Name' : 'Nombre'}
+							</label>
 						</div>
 
 						<div className="form__group">
@@ -193,7 +216,11 @@ const Contact = () => {
 								placeholder=" "
 								required
 							/>
-							<label>Email</label>
+							<label>
+								{language === 'en'
+									? 'Email'
+									: 'Correo electrónico'}
+							</label>
 						</div>
 
 						<div className="form__group">
@@ -203,7 +230,9 @@ const Contact = () => {
 								placeholder=" "
 								required
 							/>
-							<label>Message</label>
+							<label>
+								{language === 'en' ? 'Message' : 'Mensaje'}
+							</label>
 						</div>
 
 						<button
@@ -213,10 +242,14 @@ const Contact = () => {
 							disabled={loading}
 						>
 							{loading
-								? 'Sending...'
+								? language === 'en'
+									? 'Sending...'
+									: 'Enviando...'
 								: sent
 									? 'Sent ✓'
-									: 'Send Message'}
+									: language === 'en'
+										? 'Send Message'
+										: 'Enviar mensaje'}
 						</button>
 					</form>
 				</div>

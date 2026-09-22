@@ -5,12 +5,22 @@ import Particles from './components/UI/Particles';
 import Services from './pages/Services';
 import ContactModal from './components/UI/ContactModal';
 import Footer from './components/Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Privacy from './pages/Privacy';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
 	const [isContactOpen, setIsContactOpen] = useState(false);
 	const [contactTrigger, setContactTrigger] = useState(null);
+	const [isLoaded, setIsLoaded] = useState(false);
+
+	const [language, setLanguage] = useState(
+		localStorage.getItem('language') || 'en',
+	);
+
+	useEffect(() => {
+		localStorage.setItem('language', language);
+	}, [language]);
 
 	const openContact = (triggerRef) => {
 		setContactTrigger(triggerRef);
@@ -20,31 +30,61 @@ function App() {
 	return (
 		<div className="App" style={{ position: 'relative' }}>
 			<div className="scroll__progress" />
+
+			<LoadingScreen onComplete={() => setIsLoaded(true)} />
+
 			<Particles particleCount={700} color={0x60a5fa} />
+
 			<Router>
 				<div style={{ position: 'relative', zIndex: 1 }}>
-					<Nav openContact={openContact} />
+					<Nav
+						openContact={openContact}
+						language={language}
+						setLanguage={setLanguage}
+					/>
 
 					<Routes>
 						<Route
 							path="/"
-							element={<Home openContact={openContact} />}
+							element={
+								<Home
+									openContact={openContact}
+									isLoaded={isLoaded}
+									language={language}
+								/>
+							}
 						/>
+
 						<Route
 							path="/services"
-							element={<Services openContact={openContact} />}
+							element={
+								<Services
+									openContact={openContact}
+									isLoaded={isLoaded}
+									language={language}
+								/>
+							}
 						/>
+
 						<Route
 							path="/privacy"
-							element={<Privacy openContact={openContact} />}
+							element={
+								<Privacy
+									openContact={openContact}
+									language={language}
+								/>
+							}
 						/>
 					</Routes>
-					<Footer openContact={openContact} />
+
+					<Footer openContact={openContact} language={language} />
 				</div>
+
 				<ContactModal
 					isOpen={isContactOpen}
 					onClose={() => setIsContactOpen(false)}
 					triggerRef={contactTrigger}
+					language={language}
 				/>
 			</Router>
 		</div>

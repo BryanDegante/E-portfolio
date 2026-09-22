@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Tiers = () => {
+const Tiers = ({ language }) => {
 	const [activeTier, setActiveTier] = useState(null);
 
 	const sectionRef = useRef(null);
@@ -46,7 +46,6 @@ const Tiers = () => {
 				duration: 0.7,
 				ease: 'power2.out',
 			})
-
 				.from(
 					textRef.current.querySelector('h3'),
 					{
@@ -57,7 +56,6 @@ const Tiers = () => {
 					},
 					'-=0.35',
 				)
-
 				.to(
 					cards,
 					{
@@ -69,7 +67,6 @@ const Tiers = () => {
 					},
 					'-=0.25',
 				)
-
 				.from(
 					disclaimerRef.current,
 					{
@@ -93,12 +90,27 @@ const Tiers = () => {
 						ref={textRef}
 						className="tier__text text__color--normal"
 					>
-						<h2>Choose the right website for your needs.</h2>
+						<h2>
+							{language === 'en'
+								? 'Choose the right website for your needs.'
+								: 'Elige el sitio web adecuado para tus necesidades.'}
+						</h2>
 
 						<h3>
-							Whether you need a simple online presence or a fully
-							customized experience, <br />
-							there's an option to fit your project.
+							{language === 'en' ? (
+								<>
+									Whether you need a simple online presence or
+									a fully customized experience, <br />
+									there's an option to fit your project.
+								</>
+							) : (
+								<>
+									Ya sea que necesites una presencia en línea
+									sencilla o una experiencia totalmente
+									personalizada, <br />
+									hay una opción que se adapta a tu proyecto.
+								</>
+							)}
 						</h3>
 					</div>
 
@@ -106,14 +118,32 @@ const Tiers = () => {
 						{TierData.map((tier, index) => (
 							<TierCard
 								key={index}
-								title={tier.title}
-								subtitle={tier.subtitle}
+								title={
+									typeof tier.title === 'object'
+										? tier.title[language]
+										: tier.title
+								}
+								subtitle={
+									typeof tier.subtitle === 'object'
+										? tier.subtitle[language]
+										: tier.subtitle
+								}
 								price={tier.price}
-								list={tier.list}
-								best={tier.best}
+								list={
+									typeof tier.list === 'object' &&
+									!Array.isArray(tier.list)
+										? tier.list[language]
+										: tier.list
+								}
+								best={
+									typeof tier.best === 'object'
+										? tier.best[language]
+										: tier.best
+								}
 								examples={tier.examples}
 								selectTier={tierSelect}
 								isActive={activeTier}
+								language={language}
 							/>
 						))}
 					</div>
@@ -122,11 +152,25 @@ const Tiers = () => {
 						ref={disclaimerRef}
 						className="disclaimer text__color--muted"
 					>
-						<span className="text__color--purple">**</span> A{' '}
-						<span className="text__color--blue">50%</span> deposit
-						is required to begin the project. The remaining{' '}
-						<span className="text__color--blue">50%</span> is due
-						upon website completion and delivery.{' '}
+						<span className="text__color--purple">**</span>
+						{language === 'en' ? (
+							<>
+								A <span className="text__color--blue">50%</span>{' '}
+								deposit is required to begin the project. The
+								remaining{' '}
+								<span className="text__color--blue">50%</span>{' '}
+								is due upon website completion and delivery.
+							</>
+						) : (
+							<>
+								Se requiere un{' '}
+								<span className="text__color--blue">50%</span>{' '}
+								de anticipo para comenzar el proyecto. El{' '}
+								<span className="text__color--blue">50%</span>{' '}
+								restante se debe pagar al completar y entregar
+								el sitio web.
+							</>
+						)}
 						<span className="text__color--purple">**</span>
 					</p>
 				</div>

@@ -7,13 +7,14 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(SplitText);
 
-const Landing = ({ openContact }) => {
+const Landing = ({ openContact,isLoaded,language }) => {
 	const landingRef = useRef(null);
 	const textRef = useRef(null);
 	const buttonsRef = useRef(null);
 	const contactButtonRef = useRef(null);
 
 	useEffect(() => {
+		if (!isLoaded) return;
 		const ctx = gsap.context(() => {
 			const heading = textRef.current.querySelector('h1');
 			const subheading = textRef.current.querySelector('h2');
@@ -101,25 +102,33 @@ const Landing = ({ openContact }) => {
 		}, landingRef);
 
 		return () => ctx.revert();
-	}, []);
+	}, [isLoaded,language]);
 
 	return (
-		<section id="Landing" ref={landingRef}>
+		<section id="Landing" ref={landingRef} key={language}>
 			<div className="row">
 				<div className="landing__container">
 					<div ref={textRef} className="landing__container--text">
 						<h1 className="text__color--normal">
-							I'm Bryan Degante
+							{language === 'en'
+								? "I'm Bryan Degante"
+								: 'Soy Bryan Degante'}
 						</h1>
 
 						<h2 className="text__color--normal">
-							A Frontend Developer <br />
-							Focused on clean UI & Smooth Animations
+							{language === 'en'
+								? 'A Frontend Developer'
+								: 'Desarrollador Frontend'}
+							<br />
+							{language === 'en'
+								? 'Focused on clean UI & Smooth Animations'
+								: 'Enfocado en interfaces limpias y animaciones fluidas'}
 						</h2>
 
 						<h3 className="text__color--normal">
-							Building responsive interfaces with modern web
-							technologies.
+							{language === 'en'
+								? 'Building responsive interfaces with modern web technologies.'
+								: 'Creo interfaces responsivas con tecnologías modernas.'}
 						</h3>
 					</div>
 
@@ -141,7 +150,7 @@ const Landing = ({ openContact }) => {
 								newPage={true}
 							/>
 						</li>
-{/* 
+						{/* 
 						<li>
 							<SocialButton
 								text="Resume"

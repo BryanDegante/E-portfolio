@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AddOns = () => {
+const AddOns = ({ language }) => {
 	const sectionRef = useRef(null);
 	const wrapperRef = useRef(null);
 	const setupRef = useRef(null);
@@ -80,7 +80,6 @@ const AddOns = () => {
 				duration: 0.7,
 				ease: 'power2.out',
 			})
-
 				.to(
 					wrapperRef.current.querySelector(':scope > p'),
 					{
@@ -91,7 +90,6 @@ const AddOns = () => {
 					},
 					'-=0.35',
 				)
-
 				.to(
 					setupRef.current.querySelector('h3'),
 					{
@@ -102,7 +100,6 @@ const AddOns = () => {
 					},
 					'-=0.2',
 				)
-
 				.to(
 					setupRef.current.querySelector(':scope > p'),
 					{
@@ -113,7 +110,6 @@ const AddOns = () => {
 					},
 					'-=0.35',
 				)
-
 				.to(
 					setupCards,
 					{
@@ -125,7 +121,6 @@ const AddOns = () => {
 					},
 					'-=0.2',
 				)
-
 				.to(
 					managedRef.current.querySelector('h3'),
 					{
@@ -136,7 +131,6 @@ const AddOns = () => {
 					},
 					'-=0.15',
 				)
-
 				.to(
 					managedRef.current.querySelector(':scope > p'),
 					{
@@ -147,7 +141,6 @@ const AddOns = () => {
 					},
 					'-=0.35',
 				)
-
 				.to(
 					managedCards,
 					{
@@ -159,7 +152,6 @@ const AddOns = () => {
 					},
 					'-=0.2',
 				)
-
 				.to(
 					disclaimerRef.current,
 					{
@@ -179,27 +171,47 @@ const AddOns = () => {
 		<section id="AddOns" ref={sectionRef}>
 			<div className="container">
 				<div ref={wrapperRef} className="addOns__wrapper">
-					<h2 className="text__color--normal">ADD-ONS & SERVICES</h2>
+					<h2 className="text__color--normal">
+						{language === 'en'
+							? 'ADD-ONS & SERVICES'
+							: 'SERVICIOS ADICIONALES'}
+					</h2>
 
 					<p className="text__color--muted">
-						Optional services to help get your site online
+						{language === 'en'
+							? 'Optional services to help get your site online'
+							: 'Servicios opcionales para ayudarte a poner tu sitio en línea'}
 					</p>
 
 					<div ref={setupRef} className="addOn__wrapper">
 						<h3 className="text__color--normal">
-							Setup Assistance
+							{language === 'en'
+								? 'Setup Assistance'
+								: 'Asistencia de Configuración'}
 						</h3>
 
-						<p className="text__color--muted">One-time services</p>
+						<p className="text__color--muted">
+							{language === 'en'
+								? 'One-time services'
+								: 'Servicios de un solo pago'}
+						</p>
 
 						<div className="addOn__cards">
 							{assist.map((card, index) => (
 								<AddOnCard
 									key={index}
 									type={card.type}
-									title={card.title}
+									title={
+										typeof card.title === 'object'
+											? card.title[language]
+											: card.title
+									}
 									price={card.price}
-									description={card.description}
+									description={
+										typeof card.description === 'object'
+											? card.description[language]
+											: card.description
+									}
 								/>
 							))}
 						</div>
@@ -207,19 +219,33 @@ const AddOns = () => {
 
 					<div ref={managedRef} className="addOn__wrapper">
 						<h3 className="text__color--normal">
-							Managed Services
+							{language === 'en'
+								? 'Managed Services'
+								: 'Servicios Administrados'}
 						</h3>
 
-						<p className="text__color--muted">Monthly Plans</p>
+						<p className="text__color--muted">
+							{language === 'en'
+								? 'Monthly Plans'
+								: 'Planes Mensuales'}
+						</p>
 
 						<div className="addOn__cards">
 							{manage.map((card, index) => (
 								<AddOnCard
 									key={index}
 									type={card.type}
-									title={card.title}
+									title={
+										typeof card.title === 'object'
+											? card.title[language]
+											: card.title
+									}
 									price={card.price}
-									description={card.description}
+									description={
+										typeof card.description === 'object'
+											? card.description[language]
+											: card.description
+									}
 								/>
 							))}
 						</div>
@@ -229,12 +255,26 @@ const AddOns = () => {
 						ref={disclaimerRef}
 						className="disclaimer text__color--muted"
 					>
-						<span className="text__color--purple">**</span> Managed
-						services are{' '}
-						<span className="text__color--blue">
-							optional monthly services
-						</span>{' '}
-						and are billed separately from the website package.{' '}
+						<span className="text__color--purple">**</span>{' '}
+						{language === 'en' ? (
+							<>
+								Managed services are{' '}
+								<span className="text__color--blue">
+									optional monthly services
+								</span>{' '}
+								and are billed separately from the website
+								package.
+							</>
+						) : (
+							<>
+								Los servicios administrados son{' '}
+								<span className="text__color--blue">
+									servicios mensuales opcionales
+								</span>{' '}
+								y se cobran por separado del paquete del sitio
+								web.
+							</>
+						)}{' '}
 						<span className="text__color--purple">**</span>
 					</p>
 				</div>

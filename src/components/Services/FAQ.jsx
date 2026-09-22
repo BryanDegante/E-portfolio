@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FAQData } from '../../data/FAQData';
 
-const FAQ = () => {
+const FAQ = ({ language }) => {
 	const [activeFAQ, setActiveFAQ] = useState(null);
 
 	const toggleFAQ = (index) => {
@@ -12,12 +12,17 @@ const FAQ = () => {
 		<section className="faq">
 			<div className="faq__text">
 				<p className="section__eyebrow">FAQ</p>
+
 				<h2 className="text__color--normal">
-					Frequently Asked Questions
+					{language === 'en'
+						? 'Frequently Asked Questions'
+						: 'Preguntas Frecuentes'}
 				</h2>
-				<p >
-					Have questions about the process, pricing, or what's
-					included? Find some of the most common answers below. 
+
+				<p>
+					{language === 'en'
+						? "Have questions about the process, pricing, or what's included? Find some of the most common answers below."
+						: '¿Tienes preguntas sobre el proceso, los precios o lo que incluye cada paquete? Encuentra algunas de las respuestas más comunes a continuación.'}
 				</p>
 			</div>
 
@@ -27,18 +32,19 @@ const FAQ = () => {
 						className={`faq__item ${
 							activeFAQ === index ? 'active' : ''
 						}`}
-						key={faq.question}
+						key={index}
 					>
 						<button
 							className="faq__question"
 							onClick={() => toggleFAQ(index)}
 						>
-							<span>{faq.question}</span>
+							<span>{faq.question[language]}</span>
+
 							<span className="faq__icon">+</span>
 						</button>
 
 						<div className="faq__answer">
-							<p>{faq.answer}</p>
+							<p>{faq.answer[language]}</p>
 						</div>
 					</div>
 				))}
