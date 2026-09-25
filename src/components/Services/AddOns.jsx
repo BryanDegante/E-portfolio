@@ -200,6 +200,7 @@ const AddOns = ({ language }) => {
 							{assist.map((card, index) => (
 								<AddOnCard
 									key={index}
+									language={language}
 									type={card.type}
 									title={
 										typeof card.title === 'object'
@@ -235,6 +236,7 @@ const AddOns = ({ language }) => {
 								<AddOnCard
 									key={index}
 									type={card.type}
+									language={language}
 									title={
 										typeof card.title === 'object'
 											? card.title[language]

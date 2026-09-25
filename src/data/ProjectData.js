@@ -23,7 +23,7 @@ export const ProjectData = [
 		tech: ['JavaScript', 'GSAP', 'React', 'CSS'],
 		description: {
 			en: 'A React-based movie and TV search platform integrated with the TMDB API, utilizing React Router for dynamic page navigation, state management for real-time search results and loading states, and embedded trailer playback. Designed with custom CSS for a clean, cinematic user experience.',
-			es: 'Una plataforma de búsqueda de películas y series creada con React e integrada con la API de TMDB. Utiliza React Router para la navegación dinámica, gestión de estado para resultados de búsqueda en tiempo real y estados de carga, además de reproducción de tráileres. Diseñada con CSS personalizado para ofrecer una experiencia limpia y cinematográfica.',
+			es: 'Una plataforma de búsqueda de películas y series creada con React e integrada con la API de TMDB. Utiliza React Router para la navegación dinámica, gestión de estado para resultados de búsqueda en tiempo real y estados de carga, además de reproducción de comerciales. Diseñada con CSS personalizado para ofrecer una experiencia limpia y cinematográfica.',
 		},
 	},
 
@@ -37,7 +37,7 @@ export const ProjectData = [
 		tech: ['JavaScript', 'GSAP', 'React', 'Tailwind Css', 'GitHub'],
 		description: {
 			en: 'A fully responsive awards-style interface clone built with React, recreating the design and layout of a real-world awards platform. Includes interactive elements, state management for dynamic content, and custom styling to match the original design, showcasing UI replication and front-end skills.',
-			es: 'Un clon de una interfaz de premios completamente responsiva creado con React, recreando el diseño y la estructura de una plataforma de premios del mundo real. Incluye elementos interactivos, gestión de estado para contenido dinámico y estilos personalizados que recrean el diseño original, demostrando habilidades de replicación de interfaces y desarrollo front-end.',
+			es: 'Una copia de interface contrusida, recreando el diseño y la estructura de una plataforma de premios del mundo real. Incluye elementos interactivos, gestión de estado para contenido dinámico y estilos personalizados que recrean el diseño original, demostrando habilidades de replicación de interfaces y desarrollo front-end.',
 		},
 	},
 

@@ -122,7 +122,7 @@ const ServiceLanding = ({ openContact, isLoaded, language }) => {
 						<h3 className="text__color--normal">
 							{language === 'en'
 								? 'From simple landing pages to fully customized websites, I create modern, responsive websites designed around your goals.'
-								: 'Desde páginas de aterrizaje sencillas hasta sitios web totalmente personalizados, creo sitios web modernos y responsivos diseñados para alcanzar tus objetivos.'}
+								: 'Desde páginas de aterrizaje sencillas hasta sitios web totalmente personalizados, desarrollo sitios web modernos y responsivos diseñados para alcanzar tus objetivos.'}
 						</h3>
 					</div>
 

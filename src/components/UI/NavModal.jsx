@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import ReactCountryFlag from 'react-country-flag';
 
-const NavModal = ({ isOpen, onClose, links, setActive }) => {
+const NavModal = ({ isOpen, onClose, links, setActive,language,setLanguage }) => {
 	const modalRef = useRef();
 	const linksRef = useRef([]);
 
@@ -60,7 +61,7 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 									}}
 									className="link__hover--effect "
 								>
-									{link.id}
+									{link.label[language]}
 								</button>
 							) : (
 								<a
@@ -71,12 +72,40 @@ const NavModal = ({ isOpen, onClose, links, setActive }) => {
 									}}
 									className="link__hover--effect "
 								>
-									{link.id}
+									{link.label[language]}
 								</a>
 							)}
 						</li>
 					))}
 				</ul>
+
+					<div className="language-switcher">
+											<button
+												className={language === 'en' ? 'active' : ''}
+												onClick={() => setLanguage('en')}
+											>
+												<ReactCountryFlag
+													countryCode="US"
+													svg
+													className="language__flag"
+												/>
+												EN
+											</button>
+				
+											<span>/</span>
+				
+											<button
+												className={language === 'es' ? 'active' : ''}
+												onClick={() => setLanguage('es')}
+											>
+												<ReactCountryFlag
+													countryCode="MX"
+													svg
+													className="language__flag"
+												/>
+												ES
+											</button>
+										</div>
 
 				<div className="navModal-footer">
 					<p>© {new Date().getFullYear()} Portfolio</p>

@@ -226,8 +226,7 @@ const Nav = ({ openContact, language, setLanguage }) => {
 								</li>
 							))}
 						</ul>
-
-						<div className="language-switcher">
+						<div className="language-switcher nav-switcher">
 							<button
 								className={language === 'en' ? 'active' : ''}
 								onClick={() => setLanguage('en')}
@@ -273,6 +272,8 @@ const Nav = ({ openContact, language, setLanguage }) => {
 				onClose={() => setIsMobileMenuOpen(false)}
 				links={links}
 				setActive={setActive}
+				language={language}
+				setLanguage={setLanguage}
 			/>
 		</>
 	);

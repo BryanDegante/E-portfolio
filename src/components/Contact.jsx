@@ -180,9 +180,9 @@ const Contact = ({language}) => {
 									</span>{' '}
 									y{' '}
 									<span className="text__color--purple">
-										oportunidades de tiempo completo
+										oportunidades de tiempo completo.{' '}
 									</span>
-									. Creemos algo que destaque.
+									 Desarrollemos algo que destaque.
 								</>
 							)}
 						</p>
